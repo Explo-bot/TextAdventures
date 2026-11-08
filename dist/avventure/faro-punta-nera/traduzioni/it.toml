@@ -1,0 +1,41 @@
+# Traduzione italiana dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in italiano; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "Il Faro di Punta Nera"
+descrizione_breve = "Una notte di tempesta, un faro spento, una nave che punta dritta verso gli scogli."
+introduzione = """
+Ottobre 1893. Sei Nicola, diciassette anni, aiutante del vecchio guardiano Anselmo al faro di Punta Nera.
+Sei sceso al paese nel pomeriggio per le provviste; ora è notte, il vento urla e la pioggia arriva di traverso.
+Risalendo il sentiero ti accorgi di una cosa che ti gela il sangue: **il faro è spento**.
+Laggiù, oltre le onde, brillano le luci di posizione di un brigantino che punta dritto verso gli scogli.
+"""
+
+[stanze]
+cliff = "La scogliera sotto il faro"
+entrance = "L'ingresso del faro"
+cellar = "La cantina"
+boathouse = "La rimessa delle barche"
+stairs = "La scala a chiocciola"
+lantern_room = "La sala della lanterna"
+
+[oggetti]
+brass_key = "una chiave d'ottone annerita"
+empty_can = "una tanica di latta vuota"
+full_can = "una tanica di latta piena d'olio"
+oilskin = "la cerata gialla del guardiano"
+matches = "una scatola di fiammiferi avvolta nella tela cerata"
+crank = "una manovella di ferro"
+logbook = "il diario di bordo del faro"
+
+[uscite]
+"cliff.north" = "il sentiero lastricato che sale alla porta del faro"
+"cliff.east" = "una rimessa per barche di legno, addossata alla roccia"
+"entrance.south" = "la porta socchiusa da cui sei entrato"
+"entrance.up" = "l'inizio della scala a chiocciola che sale nella torre"
+"entrance.down" = "una botola di legno nel pavimento"
+"cellar.up" = "la scala a pioli che risale alla botola"
+"boathouse.west" = "la porta che sbatte, verso il sentiero"
+"stairs.down" = "i gradini che scendono all'ingresso"
+"stairs.up" = "una porta di ferro chiusa a chiave, in cima alla scala"
+"lantern_room.down" = "la porta di ferro e la scala a chiocciola"

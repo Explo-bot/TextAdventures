@@ -1,0 +1,41 @@
+# Traduzione francese dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in francese; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "Le Phare de Punta Nera"
+descrizione_breve = "Une nuit de tempête, un phare éteint, un navire qui fonce droit sur les rochers."
+introduzione = """
+Octobre 1893. Vous êtes Nicola, dix-sept ans, aide du vieux gardien Anselmo au phare de Punta Nera.
+Vous êtes descendu au village dans l'après-midi pour les provisions ; maintenant il fait nuit, le vent hurle et la pluie tombe de biais.
+En remontant le sentier, vous remarquez une chose qui vous glace le sang : **le phare est éteint**.
+Là-bas, au-delà des vagues, brillent les feux de position d'un brick qui fonce droit sur les rochers.
+"""
+
+[stanze]
+cliff = "La falaise sous le phare"
+entrance = "L'entrée du phare"
+cellar = "La cave"
+boathouse = "Le hangar à bateaux"
+stairs = "L'escalier en colimaçon"
+lantern_room = "La salle de la lanterne"
+
+[oggetti]
+brass_key = "une clé en laiton noircie"
+empty_can = "un bidon en fer-blanc vide"
+full_can = "un bidon en fer-blanc plein d'huile"
+oilskin = "le ciré jaune du gardien"
+matches = "une boîte d'allumettes enveloppée dans de la toile cirée"
+crank = "une manivelle en fer"
+logbook = "le journal de bord du phare"
+
+[uscite]
+"cliff.north" = "le sentier pavé qui monte jusqu'à la porte du phare"
+"cliff.east" = "un hangar à bateaux en bois, adossé à la roche"
+"entrance.south" = "la porte entrouverte par laquelle vous êtes entré"
+"entrance.up" = "le bas de l'escalier en colimaçon qui monte dans la tour"
+"entrance.down" = "une trappe en bois dans le plancher"
+"cellar.up" = "l'échelle qui remonte vers la trappe"
+"boathouse.west" = "la porte qui claque, vers le sentier"
+"stairs.down" = "les marches qui redescendent vers l'entrée"
+"stairs.up" = "une porte en fer fermée à clé, en haut de l'escalier"
+"lantern_room.down" = "la porte en fer et l'escalier en colimaçon"

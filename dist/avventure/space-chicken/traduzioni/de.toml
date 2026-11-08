@@ -1,0 +1,62 @@
+# Traduzione tedesca dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in tedesco; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "Star Trucker and the Space Chicken of Doom"
+descrizione_breve = "Ein Raumfrachter, außerirdische Eier und monströse Hühner. Science-Fiction-Komödie im B-Movie-Stil, mit Mozzarella."
+introduzione = """
+Im Jahr 2122. Der Raumfrachter **Rusty Badger** war mit einer Ladung Mozzarella von mizardianischen Büffeln auf dem Rückweg zur Erde, als AUNTIE, der Bordcomputer, die Besatzung wegen eines Signals vom Asteroiden Mold-13 weckte. Auf dem Asteroiden lag ein außerirdisches Wrack voller riesiger Eier. Jemand hatte die glänzende Idee, ein paar davon an Bord zu bringen.
+Während der Kapitän ein Omelett vorschlug und die Wissenschaftsoffizierin darauf bestand, sie zur Erde zu bringen, sind die Eier geschlüpft. Dutzende Küken mit Zähnen verschwanden in den Lüftungsschächten. Seitdem sind sie gewachsen. Sehr. Und sie haben Hunger.
+
+Du bist **Molly**, die Bordmechanikerin. Du bist gerade aus der Vorratskammer der Messe gekommen, in der du dich versteckt hattest. Das Schiff ist still. Zu still. Du bist die einzige Überlebende … abgesehen vielleicht von Mr. Whiskers, der Bordkatze.
+"""
+
+[stanze]
+mess_hall = "Die Messe"
+corridor = "Der Hauptkorridor"
+crew_quarters = "Die Mannschaftsquartiere"
+air_ducts = "Die Lüftungsschächte"
+laboratory = "Das Wissenschaftslabor"
+bridge = "Die Kommandobrücke"
+cargo_hold = "Der Laderaum und die Kühlkammern"
+engine_room = "Der Maschinenraum"
+hangar = "Der Hangar der Rettungsfähre"
+shuttle = "Die Rettungsfähre"
+
+[oggetti]
+frying_pan = "eine verbeulte antihaftbeschichtete Kombüsenpfanne"
+tuna_can = "eine Dose Weltraum-Thunfisch im eigenen Saft"
+eggshell = "ein Stück außerirdischer Eierschale voller grünlichem Schleim"
+cat_carrier = "eine Katzentransportbox mit der Aufschrift „MR. WHISKERS — NICHT ÖFFNEN“"
+mr_whiskers = "Mr. Whiskers, der rote Bordkater, sehr beleidigt, in der Transportbox"
+captain_card = "die Magnetkarte von Kapitän Hal Brannigan"
+captain_note = "ein fettiger Zettel mit dem Selbstzerstörungscode"
+megacorp_dossier = "ein Ausdruck der vertraulichen Akten der MegaCorp Unlimited"
+sour_mozzarella = "ein sauer gewordener Mozzarella vom mizardianischen Büffel mit verheerendem Geruch"
+wrench = "ein riesiger Schraubenschlüssel"
+rubber_hose = "ein biegsamer Gummischlauch"
+duct_tape = "eine Rolle Panzerband (der wahre Held des Weltraums)"
+coolant_tank = "eine Flasche Kryo-Kühlmittel, eiskalt beim Anfassen"
+cryo_cannon = "eine improvisierte Kryokanone: Flasche, Schlauch und jede Menge Panzerband"
+
+[uscite]
+"mess_hall.north" = "eine Schiebetür, die sich mit einem hydraulischen Seufzer zum Hauptkorridor öffnet"
+"corridor.south" = "die Tür der Messe"
+"corridor.west" = "der Durchgang zu den Mannschaftsquartieren"
+"corridor.north" = "die Leiter, die zur Kommandobrücke hinaufführt"
+"corridor.east" = "die Panzertür des Labors mit einem rot blinkenden Kartenleser"
+"corridor.down" = "ein Lastenaufzug, der zum Laderaum und zu den Kühlkammern hinunterfährt"
+"crew_quarters.east" = "der Durchgang zum Hauptkorridor"
+"crew_quarters.up" = "ein Lüftungsgitter in der Decke, über der obersten Koje"
+"air_ducts.down" = "das offene Gitter über den Quartieren"
+"air_ducts.east" = "ein Schachtabschnitt, der an einem Gitter über dem Labor endet"
+"laboratory.west" = "die Panzertür zum Korridor (von innen öffnet sie sich per Knopfdruck)"
+"laboratory.up" = "das Lüftungsgitter in der Decke"
+"bridge.south" = "die Leiter, die zum Korridor hinunterführt"
+"cargo_hold.up" = "der Lastenaufzug, der zum Korridor hinauffährt"
+"cargo_hold.west" = "eine Schottentür zum Maschinenraum, aus dem ein Summen dringt"
+"cargo_hold.east" = "das Schott des Hangars der Rettungsfähre mit der Aufschrift „NUR FÜR NOTFÄLLE“"
+"engine_room.east" = "die Schottentür zurück zum Laderaum"
+"hangar.west" = "das Schott zurück zum Laderaum"
+"hangar.in" = "die offene Luke der Rettungsfähre „Little Badger“"
+"shuttle.out" = "die Luke zum Hangar"

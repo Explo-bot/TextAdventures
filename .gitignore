@@ -1,0 +1,17 @@
+# Build Rust
+motore/target/
+# Partite, stati e salvataggi locali
+partite/
+# Configurazione personale (può contenere chiavi API, ID Telegram, codici
+# d'invito): nel repository resta solo l'esempio.
+config/*
+!config/config.esempio.toml
+config.toml
+# Eseguibili e pacchetti generati
+dist/*.exe
+dist/*.zip
+# Modelli GGUF per il fornitore "locale" (file molto grandi)
+modelli/
+*.gguf
+# Appunti personali con chiavi API
+docs/ApiKeyVari.txt

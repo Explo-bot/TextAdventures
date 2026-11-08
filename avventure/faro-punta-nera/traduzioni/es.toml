@@ -1,0 +1,41 @@
+# Traduzione spagnola dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in spagnolo; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "El Faro de Punta Nera"
+descrizione_breve = "Una noche de tormenta, un faro apagado, un barco que va directo hacia las rocas."
+introduzione = """
+Octubre de 1893. Eres Nicola, diecisiete años, ayudante del viejo farero Anselmo en el faro de Punta Nera.
+Bajaste al pueblo por la tarde a por provisiones; ahora es de noche, el viento aúlla y la lluvia cae de lado.
+Al subir de nuevo por el sendero te das cuenta de algo que te hiela la sangre: **el faro está apagado**.
+Allá abajo, más allá de las olas, brillan las luces de navegación de un bergantín que va directo hacia las rocas.
+"""
+
+[stanze]
+cliff = "El acantilado bajo el faro"
+entrance = "La entrada del faro"
+cellar = "El sótano"
+boathouse = "El cobertizo de las barcas"
+stairs = "La escalera de caracol"
+lantern_room = "La sala de la linterna"
+
+[oggetti]
+brass_key = "una llave de latón ennegrecida"
+empty_can = "una lata de hojalata vacía"
+full_can = "una lata de hojalata llena de aceite"
+oilskin = "el impermeable amarillo del farero"
+matches = "una caja de cerillas envuelta en hule"
+crank = "una manivela de hierro"
+logbook = "el cuaderno de bitácora del faro"
+
+[uscite]
+"cliff.north" = "el sendero empedrado que sube hasta la puerta del faro"
+"cliff.east" = "un cobertizo de madera para barcas, pegado a la roca"
+"entrance.south" = "la puerta entornada por la que has entrado"
+"entrance.up" = "el arranque de la escalera de caracol que sube a la torre"
+"entrance.down" = "una trampilla de madera en el suelo"
+"cellar.up" = "la escalera de mano que sube hasta la trampilla"
+"boathouse.west" = "la puerta que golpea con el viento, hacia el sendero"
+"stairs.down" = "los peldaños que bajan a la entrada"
+"stairs.up" = "una puerta de hierro cerrada con llave, en lo alto de la escalera"
+"lantern_room.down" = "la puerta de hierro y la escalera de caracol"

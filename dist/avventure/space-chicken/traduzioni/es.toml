@@ -1,0 +1,62 @@
+# Traduzione spagnola dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in spagnolo; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "Star Trucker and the Space Chicken of Doom"
+descrizione_breve = "Un carguero espacial, huevos alienígenas y pollos monstruosos. Comedia de ciencia ficción de serie B, con mozzarellas."
+introduzione = """
+Año 2122. El carguero espacial **Rusty Badger** volvía a la Tierra con un cargamento de mozzarella de búfala mizardiana cuando AUNTIE, el ordenador de a bordo, despertó a la tripulación por una señal procedente del asteroide Mold-13. En el asteroide había un pecio alienígena lleno de huevos gigantes. A alguien se le ocurrió la brillante idea de subir unos cuantos a bordo.
+Mientras el capitán proponía una tortilla y la oficial científica insistía en llevarlos a la Tierra, los huevos eclosionaron. Decenas de polluelos con dientes desaparecieron por los conductos de ventilación. Desde entonces han crecido. Mucho. Y tienen hambre.
+
+Eres **Molly**, la mecánica de a bordo. Acabas de salir de la despensa del comedor, donde te habías escondido. La nave está en silencio. Demasiado en silencio. Eres la única superviviente… aparte, quizá, de Mr. Whiskers, el gato de a bordo.
+"""
+
+[stanze]
+mess_hall = "El comedor"
+corridor = "El pasillo principal"
+crew_quarters = "Los camarotes de la tripulación"
+air_ducts = "Los conductos de ventilación"
+laboratory = "El laboratorio científico"
+bridge = "El puente de mando"
+cargo_hold = "La bodega y las cámaras frigoríficas"
+engine_room = "La sala de máquinas"
+hangar = "El hangar de la lanzadera"
+shuttle = "La lanzadera de salvamento"
+
+[oggetti]
+frying_pan = "una sartén antiadherente de cocina de a bordo, abollada"
+tuna_can = "una lata de atún espacial al natural"
+eggshell = "un trozo de cáscara de huevo alienígena cubierto de baba verdosa"
+cat_carrier = "un transportín para gatos con el rótulo «MR. WHISKERS — NO ABRIR»"
+mr_whiskers = "Mr. Whiskers, el gato pelirrojo de a bordo, muy ofendido, dentro del transportín"
+captain_card = "la tarjeta magnética del capitán Hal Brannigan"
+captain_note = "una nota grasienta con el código de autodestrucción"
+megacorp_dossier = "una copia impresa de los archivos confidenciales de MegaCorp Unlimited"
+sour_mozzarella = "una mozzarella de búfala mizardiana agria, de olor devastador"
+wrench = "una llave inglesa gigante"
+rubber_hose = "una manguera de goma flexible"
+duct_tape = "un rollo de cinta americana (la verdadera heroína del espacio)"
+coolant_tank = "una bombona de refrigerante criogénico, helada al tacto"
+cryo_cannon = "un cañón criogénico improvisado: bombona, manguera y mucha cinta americana"
+
+[uscite]
+"mess_hall.north" = "una puerta corredera que se abre con un suspiro hidráulico hacia el pasillo principal"
+"corridor.south" = "la puerta del comedor"
+"corridor.west" = "el paso hacia los camarotes de la tripulación"
+"corridor.north" = "la escalerilla que sube al puente de mando"
+"corridor.east" = "la puerta blindada del laboratorio, con un lector de tarjetas que parpadea en rojo"
+"corridor.down" = "un montacargas que baja a la bodega y a las cámaras frigoríficas"
+"crew_quarters.east" = "el paso hacia el pasillo principal"
+"crew_quarters.up" = "una rejilla de ventilación en el techo, sobre la litera más alta"
+"air_ducts.down" = "la rejilla abierta sobre los camarotes"
+"air_ducts.east" = "un tramo de conducto que acaba en una rejilla sobre el laboratorio"
+"laboratory.west" = "la puerta blindada hacia el pasillo (desde dentro se abre con un botón)"
+"laboratory.up" = "la rejilla de ventilación del techo"
+"bridge.south" = "la escalerilla que baja al pasillo"
+"cargo_hold.up" = "el montacargas que sube al pasillo"
+"cargo_hold.west" = "una puerta estanca hacia la sala de máquinas, de donde llega un zumbido"
+"cargo_hold.east" = "la compuerta del hangar de la lanzadera de salvamento, con el rótulo «SOLO EMERGENCIAS»"
+"engine_room.east" = "la puerta estanca que vuelve a la bodega"
+"hangar.west" = "la compuerta que vuelve a la bodega"
+"hangar.in" = "la escotilla abierta de la lanzadera de salvamento «Little Badger»"
+"shuttle.out" = "la escotilla hacia el hangar"

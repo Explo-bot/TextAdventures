@@ -1,0 +1,41 @@
+# Traduzione tedesca dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in tedesco; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "Der Leuchtturm von Punta Nera"
+descrizione_breve = "Eine stürmische Nacht, ein dunkler Leuchtturm, ein Schiff, das direkt auf die Klippen zuhält."
+introduzione = """
+Oktober 1893. Du bist Nicola, siebzehn Jahre alt, Gehilfe des alten Leuchtturmwärters Anselmo am Leuchtturm von Punta Nera.
+Am Nachmittag bist du ins Dorf hinuntergegangen, um Vorräte zu holen; jetzt ist es Nacht, der Wind heult und der Regen peitscht von der Seite.
+Als du den Pfad wieder hinaufsteigst, bemerkst du etwas, das dir das Blut in den Adern gefrieren lässt: **Der Leuchtturm ist dunkel**.
+Dort draußen, jenseits der Wellen, leuchten die Positionslichter einer Brigg, die direkt auf die Klippen zuhält.
+"""
+
+[stanze]
+cliff = "Die Klippe unter dem Leuchtturm"
+entrance = "Der Eingang des Leuchtturms"
+cellar = "Der Keller"
+boathouse = "Das Bootshaus"
+stairs = "Die Wendeltreppe"
+lantern_room = "Der Laternenraum"
+
+[oggetti]
+brass_key = "ein angelaufener Messingschlüssel"
+empty_can = "ein leerer Blechkanister"
+full_can = "ein Blechkanister voller Öl"
+oilskin = "das gelbe Ölzeug des Wärters"
+matches = "eine in Wachstuch gewickelte Streichholzschachtel"
+crank = "eine eiserne Kurbel"
+logbook = "das Logbuch des Leuchtturms"
+
+[uscite]
+"cliff.north" = "der gepflasterte Pfad, der zur Tür des Leuchtturms hinaufführt"
+"cliff.east" = "ein hölzernes Bootshaus, an den Fels gebaut"
+"entrance.south" = "die angelehnte Tür, durch die du hereingekommen bist"
+"entrance.up" = "der Fuß der Wendeltreppe, die in den Turm hinaufführt"
+"entrance.down" = "eine hölzerne Falltür im Boden"
+"cellar.up" = "die Leiter, die zur Falltür hinaufführt"
+"boathouse.west" = "die klappernde Tür, zum Pfad hin"
+"stairs.down" = "die Stufen, die zum Eingang hinunterführen"
+"stairs.up" = "eine verschlossene Eisentür oben an der Treppe"
+"lantern_room.down" = "die Eisentür und die Wendeltreppe"

@@ -1,0 +1,28 @@
+AVVENTURA — motore per avventure testuali narrate da un modello AI
+====================================================================
+
+1. Copia config.esempio.toml in config.toml (nella stessa cartella di avventura.exe).
+2. Scegli il profilo AI: il file elenca i profili pronti (openai, claude, gemini,
+   ollama, lmstudio, openrouter, gguf, prova). Vedili con:   avventura profili
+   - Servizi in rete: imposta la chiave come variabile d'ambiente, ad esempio in
+     PowerShell:  setx ANTHROPIC_API_KEY "..."   (poi riapri il terminale)
+     (OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY)
+     Gratis: Google Gemini con il piano gratuito (chiave da aistudio.google.com/apikey).
+   - Modello sul tuo PC: Ollama o LM Studio, senza chiave (profili ollama / lmstudio).
+   - File GGUF dal disco (profilo gguf): serve la variante con modello locale
+     (avventura-cuda.exe); questa versione standard non la include. Vedi modelli\LEGGIMI.txt.
+   - Per provare senza AI:   --profilo prova
+3. Verifica la connessione:   avventura prova-ai --profilo <nome>
+4. Gioca:   avventura gioca --profilo <nome>     (oppure imposta AVVENTURA_PROFILO)
+   Le avventure stanno in avventure\<id>\ (gioco.md + stanze\*.md); stato e
+   salvataggi vengono creati in partite\<id>\. Al primo avvio il gioco chiede la
+   lingua (italiano, inglese, francese, spagnolo o tedesco: il narratore
+   risponde nella lingua scelta);
+   /language la cambia, /help elenca i comandi (/save, /load, /saves, /quit...).
+5. Bot Telegram: crea il bot con @BotFather, imposta TELEGRAM_BOT_TOKEN, poi
+   avventura telegram --verifica   e   avventura telegram
+6. Controlla un'avventura scritta da te:   avventura valida --avventura <id>
+Scorciatoie: gioca.bat / gioca.ps1 / gioca.sh (opzioni: -Avventura, -Carica, -Nuova, -Profilo, -Offline, -Lingua it|en|fr|es|de);
+bot Telegram: gioca-telegram.ps1 / gioca-telegram.sh (-Verifica, -InstallaAvvioAutomatico solo su Windows);
+installatori: installa.ps1 / installa.sh.
+Manuale completo: MANUALE.md

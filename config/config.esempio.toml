@@ -1,0 +1,250 @@
+# =============================================================================
+#  Configurazione del motore "Avventura" — FILE DI ESEMPIO
+# =============================================================================
+#
+#  Copia questo file in  config/config.toml  (oppure config.toml nella cartella
+#  da cui avvii il gioco) e modificalo. config.toml è escluso da git: può
+#  contenere impostazioni personali.
+#
+#  Ordine di ricerca del file: --config FILE → ./config.toml →
+#  ./config/config.toml → cartella dell'eseguibile → valori predefiniti.
+#
+#  Precedenza dei valori (dalla più forte):
+#    opzioni da riga di comando (--profilo, --timeout)
+#    → variabili d'ambiente → profilo scelto → sezione [ai] → predefiniti del fornitore.
+#
+#  Variabili d'ambiente:
+#    AVVENTURA_PROFILO, AVVENTURA_FORNITORE, AVVENTURA_BASE_URL, AVVENTURA_MODELLO,
+#    AVVENTURA_API_KEY, AVVENTURA_CONTESTO (token), AVVENTURA_TIMEOUT (secondi),
+#    AVVENTURA_MODELLO_GGUF (file del modello per il fornitore "locale").
+#
+#  Comandi utili:
+#    avventura profili                         elenca [ai] e i profili qui sotto
+#    avventura prova-ai --profilo NOME --solo-config   controlla senza spendere nulla
+#    avventura prova-ai --avventura <id>       prova reale + contesto consigliato
+#
+#  I NOMI DEI MODELLI sono esempi (verificati a novembre 2026 sulle pagine dei
+#  fornitori): sostituiscili con quelli che preferisci o che hai installato.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Configurazione AI predefinita (usata quando non scegli un profilo)
+# -----------------------------------------------------------------------------
+[ai]
+# Fornitore: openai | anthropic | gemini | ollama | lmstudio | locale | finto
+fornitore = "openai"
+
+# Indirizzo del server. Se assente si usa quello predefinito del fornitore:
+#   openai    https://api.openai.com/v1
+#   anthropic https://api.anthropic.com
+#   gemini    https://generativelanguage.googleapis.com/v1beta
+#   ollama    http://localhost:11434
+#   lmstudio  http://localhost:1234/v1
+# base_url = "https://api.openai.com/v1"
+
+# Variabile d'ambiente con la chiave API. Se assente: OPENAI_API_KEY,
+# ANTHROPIC_API_KEY o GEMINI_API_KEY secondo il fornitore (nessuna per i locali).
+# api_key_env = "OPENAI_API_KEY"
+
+# Alternativa sconsigliata: chiave scritta in chiaro in questo file.
+# api_key = "sk-..."
+
+# La chiave è obbligatoria? Se omesso: no per ollama, lmstudio, locale, finto e
+# per openai verso un server locale (localhost, 127.x.x.x, ::1,
+# host.docker.internal); sì per openai remoto, anthropic e gemini.
+# Metti false per un server senza chiave su un altro PC della rete di casa.
+# chiave_richiesta = true
+
+# Modello (esempio modificabile). Per "locale" è ignorato: conta [ai.locale].
+modello = "gpt-6-luna"
+
+# Creatività del narratore (0 = prevedibile, 2 = molto libero).
+# Alcuni modelli recenti la ignorano o la rifiutano: il motore se ne accorge da solo.
+temperatura = 0.7
+
+# Token massimi della risposta di ogni turno.
+max_token = 1200
+
+# Dimensione del contesto del modello in token (0 = sconosciuta, non controllare).
+# Serve con i modelli locali: con "ollama" viene inviata al server
+# (options.num_ctx); con "lmstudio" deve coincidere con il "Context Length"
+# scelto quando carichi il modello. Il valore consigliato per un'avventura lo
+# calcolano "avventura valida" e "avventura prova-ai --avventura <id>".
+contesto_token = 0
+
+# Ragionamento ("thinking") prima della risposta: migliora la qualità ma rallenta.
+#   predefinito = decide il modello (default per i fornitori cloud)
+#   spento      = disattivato o minimo (default per ollama, lmstudio, locale)
+#   basso | medio | alto
+ragionamento = "predefinito"
+
+# Chiede al fornitore un output JSON garantito, se lo supporta.
+# Se il server rifiuta il parametro il motore riprova senza e lo segnala una volta.
+json_mode = true
+
+# Attesa massima della risposta di un turno, in secondi (1–86400; 900 = 15 minuti).
+# Il valore alto serve ai modelli locali su hardware modesto.
+timeout_secondi = 900
+
+# Attesa massima per stabilire la connessione (un server spento dà errore subito).
+timeout_connessione_secondi = 10
+
+# Tentativi per turno (errori temporanei del server e risposte non valide).
+max_tentativi = 3
+
+# Header HTTP aggiuntivi. Lascia vuoto se non servono.
+[ai.header_extra]
+# "HTTP-Referer" = "https://example.org"
+
+# Solo per fornitore = "locale" (modello GGUF letto dal disco, §5.5).
+[ai.locale]
+# File del modello: relativo alla cartella di questo file o assoluto.
+percorso_modello = "../modelli/gemma-4-12b-it-Q4_K_M.gguf"
+# Strati del modello sulla GPU: -1 = tutti, 0 = solo CPU.
+gpu_layers = -1
+# Thread di calcolo: 0 = automatico.
+thread = 0
+# Facoltativo: forza un template di chat (default = quello contenuto nel file GGUF).
+# template_chat = ""
+
+
+# =============================================================================
+#  PROFILI: configurazioni alternative pronte, scelte con
+#    avventura --profilo NOME     (oppure la variabile AVVENTURA_PROFILO)
+#  Ogni chiave di un profilo sostituisce quella di [ai]. Se il profilo cambia
+#  fornitore, base_url, chiave, modello, ragionamento e header di [ai] NON
+#  vengono ereditati (si usano i predefiniti del nuovo fornitore).
+# =============================================================================
+
+# OpenAI — serve la chiave in OPENAI_API_KEY (platform.openai.com).
+[profili.openai]
+fornitore = "openai"
+modello = "gpt-6-luna"
+
+# OpenRouter (molti modelli con una sola chiave) — serve la chiave in OPENROUTER_API_KEY.
+[profili.openrouter]
+fornitore = "openai"
+base_url = "https://openrouter.ai/api/v1"
+api_key_env = "OPENROUTER_API_KEY"
+modello = "openai/gpt-6-luna"
+[profili.openrouter.header_extra]
+"X-Title" = "Avventura"
+
+# Claude (Anthropic) — serve la chiave in ANTHROPIC_API_KEY (console.anthropic.com).
+[profili.claude]
+fornitore = "anthropic"
+modello = "claude-sonnet-5-5"
+
+# Google Gemini — serve la chiave in GEMINI_API_KEY (aistudio.google.com).
+[profili.gemini]
+fornitore = "gemini"
+modello = "gemini-3.8-flash"
+ragionamento = "basso"                    # alcuni modelli Flash rifiutano il livello minimo ("spento")
+
+# Ollama su questo PC — installa Ollama e scarica il modello: ollama pull gemma4:12b
+[profili.ollama]
+fornitore = "ollama"
+modello = "gemma4:12b"
+contesto_token = 16384
+ragionamento = "spento"
+
+# Ollama su un altro PC di casa — sul server avvia Ollama con OLLAMA_HOST=0.0.0.0.
+[profili.ollama-rete]
+fornitore = "ollama"
+base_url = "http://192.168.1.50:11434"
+modello = "gemma4:12b"
+contesto_token = 16384
+ragionamento = "spento"
+chiave_richiesta = false
+
+# LM Studio — avvia il server (scheda Developer) e carica il modello con
+# "Context Length" 16384 (oppure: lms load <modello> --context-length 16384).
+[profili.lmstudio]
+fornitore = "lmstudio"
+modello = "nome-del-modello-caricato"
+contesto_token = 16384
+
+# Modello GGUF dal disco, senza server — serve l'eseguibile con llama.cpp
+# (avventura-cuda.exe o compilato con --features locale) e un file .gguf.
+[profili.gguf]
+fornitore = "locale"
+contesto_token = 16384
+ragionamento = "spento"
+[profili.gguf.locale]
+percorso_modello = "D:/modelli/gemma-4-12b-it-Q4_K_M.gguf"
+
+# AI simulata offline — non serve niente: per provare un'avventura o il programma.
+[profili.prova]
+fornitore = "finto"
+
+
+# =============================================================================
+[motore]
+# Turni recenti ricordati nello stato (oltre alla memoria riassuntiva).
+turni_in_memoria = 5
+
+# Lunghezza massima della memoria riassuntiva scritta dall'AI (caratteri).
+lunghezza_max_memoria = 2000
+
+# Note conservate per ogni stanza (le più vecchie vengono tolte): le note
+# finiscono tutte nel prompt, quindi un limite tiene il prompt contenuto.
+max_note_stanza = 10
+
+# Cartella con una sottocartella per ogni avventura.
+cartella_avventure = "avventure"
+
+# Stato e salvataggi, una sottocartella per avventura
+# (percorso relativo alla cartella che contiene "avventure").
+cartella_partite = "partite"
+
+# "severa": ogni errore nella risposta dell'AI fa ripetere la richiesta;
+# "permissiva": le parti non valide vengono scartate e il resto applicato.
+validazione = "severa"
+
+
+[interfaccia]
+# Larghezza del testo in caratteri (0 = larghezza del terminale).
+larghezza_testo = 90
+
+# Colori (disattivati comunque se è impostata la variabile NO_COLOR).
+colori = true
+
+# Mostra turno e punteggio dopo ogni azione.
+mostra_turno = true
+
+# Testo progressivo: la narrazione compare man mano che il modello la scrive,
+# con un cursore animato in fondo finché la risposta non è completa
+# (risposta in streaming). false = la narrazione compare tutta alla fine.
+testo_progressivo = true
+
+# Lingua dell'interfaccia: "auto" (al primo avvio chiede, proponendo quella del
+# sistema o dell'app Telegram; inglese se non si riesce a capirla), "it", "en",
+# "fr", "es" o "de".
+# La scelta fatta nel gioco (o con /language) resta salvata in partite/preferenze.json.
+# Si può forzare anche con la variabile AVVENTURA_LINGUA o con --lingua.
+lingua = "auto"
+
+
+# =============================================================================
+#  Bot Telegram (avventura telegram) — vedi il manuale.
+#  Crea il bot con @BotFather e metti il token nella variabile TELEGRAM_BOT_TOKEN.
+# =============================================================================
+[telegram]
+# Variabile d'ambiente con il token del bot (mai scriverlo in questo file).
+token_env = "TELEGRAM_BOT_TOKEN"
+# ID numerici Telegram ammessi; vuoto = nessuno (il bot risponde solo con l'ID di chi scrive).
+utenti_ammessi = []
+# ID che possono usare /utenti, /ammetti, /revoca, /state e /raw.
+amministratori = []
+# Facoltativo: chi scrive "/start <codice>" viene aggiunto agli ammessi.
+# codice_invito = ""
+# Cartella delle partite dei giocatori Telegram (una sottocartella per utente).
+cartella_partite = "partite/telegram"
+# Richieste AI contemporanee: 1 per i modelli locali; con un servizio in cloud
+# si può alzare (es. 4) tenendo conto dei limiti al minuto del piano. Chi deve
+# aspettare riceve "Il narratore è occupato con un altro giocatore, sei in coda…".
+max_turni_paralleli = 1
+# Minuti dopo i quali una domanda in sospeso (menu, conferma) scade.
+inattivita_minuti = 30
+# Facoltativo: profilo AI da usare per il bot.
+# profilo = "ollama"

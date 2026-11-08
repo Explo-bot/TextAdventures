@@ -1,0 +1,62 @@
+# Traduzione francese dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in francese; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "Star Trucker and the Space Chicken of Doom"
+descrizione_breve = "Un cargo spatial, des œufs extraterrestres et des poulets monstrueux. Comédie de science-fiction façon série B, avec mozzarellas."
+introduzione = """
+Année 2122. Le cargo spatial **Rusty Badger** rentrait sur Terre avec une cargaison de mozzarella de bufflonnes mizardiennes quand AUNTIE, l'ordinateur de bord, a réveillé l'équipage à cause d'un signal provenant de l'astéroïde Mold-13. Sur l'astéroïde se trouvait une épave extraterrestre pleine d'œufs géants. Quelqu'un a eu la brillante idée d'en monter quelques-uns à bord.
+Pendant que le capitaine proposait une omelette et que la responsable scientifique insistait pour les rapporter sur Terre, les œufs ont éclos. Des dizaines de poussins à dents ont disparu dans les conduits d'aération. Depuis, ils ont grandi. Beaucoup. Et ils ont faim.
+
+Vous êtes **Molly**, la mécanicienne de bord. Vous venez de sortir du garde-manger du mess, où vous vous étiez cachée. Le vaisseau est silencieux. Trop silencieux. Vous êtes la seule survivante… à part, peut-être, Mr. Whiskers, le chat du bord.
+"""
+
+[stanze]
+mess_hall = "Le mess"
+corridor = "Le couloir principal"
+crew_quarters = "Les quartiers de l'équipage"
+air_ducts = "Les conduits d'aération"
+laboratory = "Le laboratoire scientifique"
+bridge = "La passerelle de commandement"
+cargo_hold = "La soute et les chambres froides"
+engine_room = "La salle des machines"
+hangar = "Le hangar de la navette"
+shuttle = "La navette de sauvetage"
+
+[oggetti]
+frying_pan = "une poêle antiadhésive de cuisine de bord, cabossée"
+tuna_can = "une boîte de thon spatial au naturel"
+eggshell = "un fragment de coquille d'œuf extraterrestre couvert de bave verdâtre"
+cat_carrier = "une caisse de transport pour chat marquée « MR. WHISKERS — NE PAS OUVRIR »"
+mr_whiskers = "Mr. Whiskers, le chat roux du bord, très vexé, dans sa caisse de transport"
+captain_card = "la carte magnétique du capitaine Hal Brannigan"
+captain_note = "un billet graisseux où est écrit le code d'autodestruction"
+megacorp_dossier = "une impression des dossiers confidentiels de MegaCorp Unlimited"
+sour_mozzarella = "une mozzarella de bufflonne mizardienne tournée, à l'odeur dévastatrice"
+wrench = "une clé à molette géante"
+rubber_hose = "un tuyau en caoutchouc souple"
+duct_tape = "un rouleau de ruban adhésif toilé (le vrai héros de l'espace)"
+coolant_tank = "une bouteille de fluide cryogénique, glacée au toucher"
+cryo_cannon = "un canon cryogénique improvisé : bouteille, tuyau et beaucoup de ruban adhésif"
+
+[uscite]
+"mess_hall.north" = "une porte coulissante qui s'ouvre avec un soupir hydraulique sur le couloir principal"
+"corridor.south" = "la porte du mess"
+"corridor.west" = "le passage vers les quartiers de l'équipage"
+"corridor.north" = "l'échelle qui monte à la passerelle de commandement"
+"corridor.east" = "la porte blindée du laboratoire, avec un lecteur de cartes qui clignote en rouge"
+"corridor.down" = "un monte-charge qui descend à la soute et aux chambres froides"
+"crew_quarters.east" = "le passage vers le couloir principal"
+"crew_quarters.up" = "une grille d'aération au plafond, au-dessus de la couchette la plus haute"
+"air_ducts.down" = "la grille ouverte au-dessus des quartiers"
+"air_ducts.east" = "un tronçon de conduit qui aboutit à une grille au-dessus du laboratoire"
+"laboratory.west" = "la porte blindée vers le couloir (de l'intérieur, elle s'ouvre avec un bouton)"
+"laboratory.up" = "la grille d'aération au plafond"
+"bridge.south" = "l'échelle qui descend au couloir"
+"cargo_hold.up" = "le monte-charge qui remonte au couloir"
+"cargo_hold.west" = "une porte étanche vers la salle des machines, d'où vient un bourdonnement"
+"cargo_hold.east" = "le sas du hangar de la navette de sauvetage, marqué « URGENCES UNIQUEMENT »"
+"engine_room.east" = "la porte étanche qui retourne à la soute"
+"hangar.west" = "le sas qui retourne à la soute"
+"hangar.in" = "l'écoutille ouverte de la navette de sauvetage « Little Badger »"
+"shuttle.out" = "l'écoutille vers le hangar"

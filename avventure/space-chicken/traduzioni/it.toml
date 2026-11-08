@@ -1,0 +1,62 @@
+# Traduzione italiana dei testi che il motore mostra direttamente al giocatore.
+# La narrazione la scrive l'AI in italiano; questi nomi le vengono passati
+# perché li usi sempre uguali. Tutto ciò che manca resta in inglese.
+
+titolo = "Star Trucker and the Space Chicken of Doom"
+descrizione_breve = "Un cargo spaziale, uova aliene e polli mostruosi. Commedia sci-fi da B-movie con mozzarelle."
+introduzione = """
+Anno 2122. Il cargo spaziale **Rusty Badger** stava tornando sulla Terra con un carico di mozzarelle di bufale mizardiane quando AUNTIE, il computer di bordo, ha svegliato l'equipaggio per un segnale proveniente dall'asteroide Mold-13. Sull'asteroide c'era un relitto alieno pieno di uova giganti. Qualcuno ha avuto la brillante idea di portarne a bordo qualcuna.
+Mentre il capitano proponeva una frittata e la responsabile scientifica insisteva per riportarle sulla Terra, le uova si sono schiuse. Decine di pulcini con i denti sono spariti nei condotti di aerazione. Da allora sono cresciuti. Molto. E hanno fame.
+
+Tu sei **Molly**, la meccanica di bordo. Sei appena uscita dalla dispensa della mensa, dove ti eri nascosta. La nave è silenziosa. Troppo silenziosa. Sei l'unica sopravvissuta… a parte, forse, Mr. Whiskers, il gatto di bordo.
+"""
+
+[stanze]
+mess_hall = "La mensa"
+corridor = "Il corridoio principale"
+crew_quarters = "Gli alloggi dell'equipaggio"
+air_ducts = "I condotti di aerazione"
+laboratory = "Il laboratorio scientifico"
+bridge = "Il ponte di comando"
+cargo_hold = "La stiva e le celle frigorifere"
+engine_room = "La sala macchine"
+hangar = "L'hangar della navetta"
+shuttle = "La navetta di salvataggio"
+
+[oggetti]
+frying_pan = "una padella antiaderente da galea, ammaccata"
+tuna_can = "una scatoletta di tonno spaziale al naturale"
+eggshell = "un frammento di guscio d'uovo alieno coperto di bava verdastra"
+cat_carrier = "un trasportino per gatti con la scritta «MR. WHISKERS — NON APRIRE»"
+mr_whiskers = "Mr. Whiskers, il gatto rosso di bordo, molto offeso, nel trasportino"
+captain_card = "la tessera magnetica del capitano Hal Brannigan"
+captain_note = "un biglietto unto con scritto il codice di autodistruzione"
+megacorp_dossier = "una stampa dei file riservati della MegaCorp Unlimited"
+sour_mozzarella = "una mozzarella di bufala mizardiana inacidita, dall'odore devastante"
+wrench = "una chiave inglese gigante"
+rubber_hose = "un tubo di gomma flessibile"
+duct_tape = "un rotolo di nastro adesivo americano (il vero eroe dello spazio)"
+coolant_tank = "una bombola di refrigerante criogenico, gelida al tatto"
+cryo_cannon = "un cannone criogenico improvvisato: bombola, tubo e tanto nastro adesivo"
+
+[uscite]
+"mess_hall.north" = "una porta scorrevole che si apre con un sospiro idraulico sul corridoio principale"
+"corridor.south" = "la porta della mensa"
+"corridor.west" = "il passaggio verso gli alloggi dell'equipaggio"
+"corridor.north" = "la scaletta che sale al ponte di comando"
+"corridor.east" = "la porta blindata del laboratorio, con un lettore di tessere che lampeggia di rosso"
+"corridor.down" = "un montacarichi che scende alla stiva e alle celle frigorifere"
+"crew_quarters.east" = "il passaggio verso il corridoio principale"
+"crew_quarters.up" = "una grata di aerazione nel soffitto, sopra la cuccetta più alta"
+"air_ducts.down" = "la grata aperta sopra gli alloggi"
+"air_ducts.east" = "un tratto di condotto che finisce su una grata sopra il laboratorio"
+"laboratory.west" = "la porta blindata verso il corridoio (dall'interno si apre con un pulsante)"
+"laboratory.up" = "la grata di aerazione nel soffitto"
+"bridge.south" = "la scaletta che scende al corridoio"
+"cargo_hold.up" = "il montacarichi che risale al corridoio"
+"cargo_hold.west" = "una porta stagna verso la sala macchine, da cui arriva un ronzio"
+"cargo_hold.east" = "il portellone dell'hangar della navetta di salvataggio, con la scritta «SOLO EMERGENZE»"
+"engine_room.east" = "la porta stagna che torna alla stiva"
+"hangar.west" = "il portellone che torna alla stiva"
+"hangar.in" = "il portello aperto della navetta di salvataggio «Little Badger»"
+"shuttle.out" = "il portello verso l'hangar"
