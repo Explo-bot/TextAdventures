@@ -612,7 +612,7 @@ La cartella delle avventure si cerca in quest'ordine: `--cartella-avventure` →
 
 ### 7.1 Avvio: scelta dell'avventura e della partita
 
-**Avviso open source.** A ogni avvio della sessione (subito dopo la scelta della lingua, §7.6, prima di qualunque menu), sul terminale e su Telegram, il motore mostra nella lingua dell'interfaccia che il programma è open source e che il codice è su GitHub, con l'indirizzo `https://github.com/Explo-bot/TextAdventures` (costante `sessione::URL_PROGETTO`, funzione `sessione::avviso_open_source`). Es.: "Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo https://github.com/Explo-bot/TextAdventures".
+**Avviso open source.** A ogni avvio della sessione (subito dopo la scelta della lingua, §7.6, prima di qualunque menu), sul terminale e su Telegram, il motore mostra nella lingua dell'interfaccia che il programma è open source e che il codice è su GitHub, con l'indirizzo `https://github.com/Explo-bot/TextAdventures` (costante `sessione::URL_PROGETTO`, funzione `sessione::avviso_open_source`), e, nello stesso messaggio su una seconda riga, che il racconto *Vinny Falco Detective* di Peter A. Ray, da cui è tratta l'avventura `vinny-falco`, è disponibile gratuitamente su `https://gronk.it` (costante `sessione::URL_RACCONTO`). Es.: "Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo https://github.com/Explo-bot/TextAdventures" + "Il racconto «Vinny Falco Detective» di Peter A. Ray, da cui è tratta l'avventura di Vinny Falco, è disponibile gratuitamente su https://gronk.it".
 
 All'avvio di `avventura gioca` (salvo opzioni che saltano i passaggi):
 

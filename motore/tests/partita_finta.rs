@@ -37,6 +37,7 @@ fn partita_completa_con_ai_simulata() {
         out.contains("open source: il codice è disponibile su GitHub all'indirizzo https://github.com/Explo-bot/TextAdventures"),
         "{out}"
     );
+    assert!(out.contains("https://gronk.it"), "{out}");
     assert!(out.contains("MINI AVVENTURA"), "{out}");
     assert!(
         out.contains("Sei davanti a una vecchia casa"),

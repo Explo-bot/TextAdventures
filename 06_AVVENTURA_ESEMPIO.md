@@ -1357,7 +1357,7 @@ cryo_cannon = "eine improvisierte Kryokanone: Flasche, Schlauch und jede Menge P
 
 ## Avventura 3 — "Vinny Falco: The Devil's Slide Affair" (in italiano "Vinny Falco: il caso di Devil's Slide")
 
-Noir hard-boiled: San Francisco, ottobre–novembre 1928. Il detective privato Vinny Falco indaga per il colonnello Granger sul figlio Julius, poi sulla vedova francese del figlio morto in guerra e sul testimone delle nozze, fino al finale al Montgomery Block (due finali vincenti: Julius salvato o finale amaro). Ispirata ai personaggi e alla trama del romanzo *Vinny Falco Detective* di Peter A. Ray (Studio Gronk!); i testi dell'avventura sono originali.
+Noir hard-boiled: San Francisco, ottobre–novembre 1928. Il detective privato Vinny Falco indaga per il colonnello Granger sul figlio Julius, poi sulla vedova francese del figlio morto in guerra e sul testimone delle nozze, fino al finale al Montgomery Block (due finali vincenti: Julius salvato o finale amaro). Ispirata ai personaggi e alla trama del racconto *Vinny Falco Detective* di Peter A. Ray (Studio Gronk!), disponibile gratuitamente su https://gronk.it; i testi dell'avventura sono originali.
 
 ### Struttura
 

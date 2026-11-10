@@ -27,3 +27,5 @@ bot Telegram: gioca-telegram.ps1 / gioca-telegram.sh (-Verifica, -InstallaAvvioA
 installatori: installa.ps1 / installa.sh.
 Manuale completo: MANUALE.md
 Codice sorgente (open source): https://github.com/Explo-bot/TextAdventures
+Il racconto "Vinny Falco Detective" di Peter A. Ray, da cui è tratta l'avventura
+di Vinny Falco, si legge gratis su https://gronk.it

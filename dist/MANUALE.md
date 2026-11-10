@@ -154,7 +154,7 @@ I comandi che iniziano con `/` (`/save`, `/inventory`, `/undo`…) sono gestiti 
    cd .\Avventura
    ```
 
-   Nello zip trovi: `avventura.exe`, `avventure\` (il Faro di Punta Nera, *Star Trucker and the Space Chicken of Doom* e il noir *Vinny Falco: il caso di Devil's Slide*, scritte in inglese e giocabili in tutte e cinque le lingue; se aggiorni da una versione che le aveva in due cartelle, `-en` comprese, l'installatore le sostituisce, e le partite iniziate con la vecchia versione italiana non si possono più continuare), `config.esempio.toml`, `modelli\LEGGIMI.txt`, `installa.ps1`, `installa.sh`, `gioca.ps1`, `gioca.bat`, `gioca.sh`, `gioca-telegram.ps1`, `gioca-telegram.bat`, `gioca-telegram.sh`, `LEGGIMI.txt` e questo manuale.
+   Nello zip trovi: `avventura.exe`, `avventure\` (il Faro di Punta Nera, *Star Trucker and the Space Chicken of Doom* e il noir *Vinny Falco: il caso di Devil's Slide*, tratto dal racconto *Vinny Falco Detective* di Peter A. Ray, che si legge gratis su https://gronk.it; scritte in inglese e giocabili in tutte e cinque le lingue; se aggiorni da una versione che le aveva in due cartelle, `-en` comprese, l'installatore le sostituisce, e le partite iniziate con la vecchia versione italiana non si possono più continuare), `config.esempio.toml`, `modelli\LEGGIMI.txt`, `installa.ps1`, `installa.sh`, `gioca.ps1`, `gioca.bat`, `gioca.sh`, `gioca-telegram.ps1`, `gioca-telegram.bat`, `gioca-telegram.sh`, `LEGGIMI.txt` e questo manuale.
 
 2. Esegui l'installatore:
 
@@ -872,11 +872,13 @@ gioca.bat                                   # lanciatore Windows: funziona anche
 ./gioca.sh                                  # Linux/macOS
 ```
 
-All'avvio, subito dopo l'eventuale domanda sulla lingua, il programma ricorda che è **open source** e che il codice è su GitHub:
+All'avvio, subito dopo l'eventuale domanda sulla lingua, il programma ricorda che è **open source** e che il codice è su GitHub, e che il racconto da cui è tratta l'avventura di Vinny Falco si legge gratis su gronk.it:
 
 ```
 Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo
 https://github.com/Explo-bot/TextAdventures
+Il racconto «Vinny Falco Detective» di Peter A. Ray, da cui è tratta l'avventura di Vinny
+Falco, è disponibile gratuitamente su https://gronk.it
 ```
 
 Le opzioni si danno al sottocomando `gioca` (`avventura gioca --avventura …`: scritte direttamente dopo `avventura` non sono accettate):
@@ -1634,6 +1636,8 @@ BOT  Benvenuto! Scegli un'avventura con i pulsanti. Durante il gioco scrivi le t
      azioni come messaggi; /help mostra i comandi.
 BOT  Avventura è un programma open source: il codice è disponibile su GitHub
      all'indirizzo https://github.com/Explo-bot/TextAdventures
+     Il racconto «Vinny Falco Detective» di Peter A. Ray, da cui è tratta
+     l'avventura di Vinny Falco, è disponibile gratuitamente su https://gronk.it
 BOT  AVVENTURE DISPONIBILI
 
      Il Faro di Punta Nera [nuova]
