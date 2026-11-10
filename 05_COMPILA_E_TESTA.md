@@ -56,7 +56,7 @@ dist/
 ├── config.esempio.toml          copia da config/
 ├── modelli/LEGGIMI.txt          dove mettere i file GGUF (3–5 righe)
 ├── avventure/                   copia delle avventure di esempio, con le cartelle traduzioni/ (se esistono già)
-└── LEGGIMI.txt                  istruzioni minime: 15–20 righe in italiano (scegliere il profilo, impostare la chiave o il modello locale, lanciare in terminale o come bot Telegram, lingue disponibili: italiano, inglese, francese, spagnolo, tedesco)
+└── LEGGIMI.txt                  istruzioni minime: 15–20 righe in italiano (scegliere il profilo, impostare la chiave o il modello locale, lanciare in terminale o come bot Telegram, lingue disponibili: italiano, inglese, francese, spagnolo, tedesco; in fondo l'indirizzo del codice sorgente su GitHub, https://github.com/Explo-bot/TextAdventures)
 ```
 Poi crea un archivio `dist/avventura-<versione>-<target>.zip` con questi file (un secondo zip `…-cuda.zip` se la variante CUDA esiste, perché è molto più grande) (su Windows usa `Compress-Archive`; altrove `zip`). La versione si legge da `motore/Cargo.toml`.
 

@@ -461,6 +461,7 @@ fn utente_non_ammesso() {
     let s = server.segno();
     server.testo(100, "/help");
     server.messaggio(s, 100, "Benvenuto");
+    server.messaggio(s, 100, "https://github.com/Explo-bot/TextAdventures");
     thread::sleep(Duration::from_millis(200));
     let a_555 = server.messaggi_a(555);
     assert_eq!(a_555.len(), 3, "{a_555:?}");

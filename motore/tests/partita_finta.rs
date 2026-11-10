@@ -33,6 +33,10 @@ fn partita_completa_con_ai_simulata() {
     gioca(&ambiente, &opzioni, &mut console, &NarratoreFinto).unwrap();
     let out = &console.uscita;
 
+    assert!(
+        out.contains("open source: il codice è disponibile su GitHub all'indirizzo https://github.com/Explo-bot/TextAdventures"),
+        "{out}"
+    );
     assert!(out.contains("MINI AVVENTURA"), "{out}");
     assert!(
         out.contains("Sei davanti a una vecchia casa"),

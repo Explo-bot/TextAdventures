@@ -30,6 +30,31 @@ use crate::stato::{self, Esito, PercorsiPartita, Stato};
 use crate::tr;
 use crate::uscite;
 
+/// Indirizzo del progetto su GitHub.
+pub const URL_PROGETTO: &str = "https://github.com/Explo-bot/TextAdventures";
+
+/// Avviso mostrato a ogni avvio (e a ogni `/start` del bot): il programma è
+/// open source e il codice è su GitHub.
+pub fn avviso_open_source() -> String {
+    tr!(
+        format!(
+            "Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo {URL_PROGETTO}"
+        ),
+        format!(
+            "Avventura is open source software: the code is available on GitHub at {URL_PROGETTO}"
+        ),
+        format!(
+            "Avventura est un logiciel libre (open source) : le code est disponible sur GitHub à l'adresse {URL_PROGETTO}"
+        ),
+        format!(
+            "Avventura es un programa de código abierto: el código está disponible en GitHub en {URL_PROGETTO}"
+        ),
+        format!(
+            "Avventura ist Open-Source-Software: Der Code ist auf GitHub verfügbar unter {URL_PROGETTO}"
+        )
+    )
+}
+
 /// Opzioni di avvio della sessione (`avventura gioca`).
 #[derive(Debug, Clone, Default)]
 pub struct OpzioniGioco {
@@ -190,6 +215,7 @@ pub fn gioca(
     narratore: &dyn Narratore,
 ) -> Result<()> {
     prepara_lingua(ambiente, opzioni, canale)?;
+    canale.mostra(&avviso_open_source(), Stile::Motore)?;
     for avviso in &ambiente.config.ai.avvisi {
         canale.mostra(avviso, Stile::Avviso)?;
     }

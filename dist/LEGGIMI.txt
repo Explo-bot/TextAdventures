@@ -26,3 +26,4 @@ Scorciatoie: gioca.bat / gioca.ps1 / gioca.sh (opzioni: -Avventura, -Carica, -Nu
 bot Telegram: gioca-telegram.ps1 / gioca-telegram.sh (-Verifica, -InstallaAvvioAutomatico solo su Windows);
 installatori: installa.ps1 / installa.sh.
 Manuale completo: MANUALE.md
+Codice sorgente (open source): https://github.com/Explo-bot/TextAdventures

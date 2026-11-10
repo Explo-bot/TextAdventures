@@ -38,6 +38,7 @@ TextAdventuresScript/
 │   │   ├── stanze/*.md
 │   │   └── traduzioni/          it.toml, fr.toml, es.toml, de.toml: testi mostrati dal motore (§3.4)
 │   ├── space-chicken/           seconda avventura di esempio (inglese, con traduzioni it/fr/es/de)
+│   ├── vinny-falco/             terza avventura di esempio, noir (inglese, con traduzioni it/fr/es/de)
 │   └── <altra-avventura>/ …
 ├── config/
 │   ├── config.esempio.toml      tutte le opzioni commentate
@@ -611,6 +612,8 @@ La cartella delle avventure si cerca in quest'ordine: `--cartella-avventure` →
 
 ### 7.1 Avvio: scelta dell'avventura e della partita
 
+**Avviso open source.** A ogni avvio della sessione (subito dopo la scelta della lingua, §7.6, prima di qualunque menu), sul terminale e su Telegram, il motore mostra nella lingua dell'interfaccia che il programma è open source e che il codice è su GitHub, con l'indirizzo `https://github.com/Explo-bot/TextAdventures` (costante `sessione::URL_PROGETTO`, funzione `sessione::avviso_open_source`). Es.: "Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo https://github.com/Explo-bot/TextAdventures".
+
 All'avvio di `avventura gioca` (salvo opzioni che saltano i passaggi):
 
 **Passo 1 — Scelta dell'avventura.** Il motore scansiona le sottocartelle della cartella avventure (solo quelle con `gioco.md`; quelle con errori di caricamento compaiono in fondo come "non valida" con il motivo e non sono selezionabili) e mostra un menu numerato:
@@ -761,7 +764,7 @@ Con `avventura telegram` tutta l'interazione con il giocatore avviene in una cha
 
 **Interfaccia in chat**
 - Al primo messaggio di un utente senza preferenza (e con `interfaccia.lingua = "auto"`) il bot chiede la lingua con i pulsanti "English", "Italiano", "Français", "Español", "Deutsch", con per prima quella dell'app Telegram; la scelta (anche "Annulla", che vale come accettare la prima) viene salvata (§7.6).
-- `/start`: benvenuto + menu delle avventure (§7.1 Passo 1) come **tastiera inline** (un pulsante per avventura, con titolo e stato, più il pulsante della lingua; descrizioni nel testo del messaggio). Poi il menu della partita (Continua / Carica / Nuova / Indietro) come pulsanti.
+- `/start`: benvenuto + avviso open source con l'indirizzo GitHub (§7.1) + menu delle avventure (§7.1 Passo 1); anche `/start` scritto durante una partita mostra l'avviso prima di tornare al menu (come `/menu`) come **tastiera inline** (un pulsante per avventura, con titolo e stato, più il pulsante della lingua; descrizioni nel testo del messaggio). Poi il menu della partita (Continua / Carica / Nuova / Indietro) come pulsanti.
 - Tutti i menu e le conferme del §7.1–7.3 diventano pulsanti inline (`callback_query`); dopo la scelta il messaggio con i pulsanti viene modificato (`editMessageText`) per mostrare la scelta fatta ed eliminare i pulsanti, così non si possono premere due volte. Rispondere sempre a `answerCallbackQuery`.
 - Le richieste di testo libero (nome del salvataggio) usano un messaggio con il nome proposto come pulsante e la possibilità di scriverne un altro.
 - `/load` mostra la lista dei salvataggi come pulsanti (nome · turno · stanza · data, `★` sul corrente) più "Annulla"; `/save` mostra i pulsanti "Salva in «corrente»", "Sovrascrivi esistente", "Nuovo salvataggio", "Annulla".

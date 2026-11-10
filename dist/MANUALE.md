@@ -154,7 +154,7 @@ I comandi che iniziano con `/` (`/save`, `/inventory`, `/undo`…) sono gestiti 
    cd .\Avventura
    ```
 
-   Nello zip trovi: `avventura.exe`, `avventure\` (il Faro di Punta Nera e *Star Trucker and the Space Chicken of Doom*, scritte in inglese e giocabili in tutte e cinque le lingue; se aggiorni da una versione che le aveva in due cartelle, `-en` comprese, l'installatore le sostituisce, e le partite iniziate con la vecchia versione italiana non si possono più continuare), `config.esempio.toml`, `modelli\LEGGIMI.txt`, `installa.ps1`, `installa.sh`, `gioca.ps1`, `gioca.bat`, `gioca.sh`, `gioca-telegram.ps1`, `gioca-telegram.bat`, `gioca-telegram.sh`, `LEGGIMI.txt` e questo manuale.
+   Nello zip trovi: `avventura.exe`, `avventure\` (il Faro di Punta Nera, *Star Trucker and the Space Chicken of Doom* e il noir *Vinny Falco: il caso di Devil's Slide*, scritte in inglese e giocabili in tutte e cinque le lingue; se aggiorni da una versione che le aveva in due cartelle, `-en` comprese, l'installatore le sostituisce, e le partite iniziate con la vecchia versione italiana non si possono più continuare), `config.esempio.toml`, `modelli\LEGGIMI.txt`, `installa.ps1`, `installa.sh`, `gioca.ps1`, `gioca.bat`, `gioca.sh`, `gioca-telegram.ps1`, `gioca-telegram.bat`, `gioca-telegram.sh`, `LEGGIMI.txt` e questo manuale.
 
 2. Esegui l'installatore:
 
@@ -872,6 +872,13 @@ gioca.bat                                   # lanciatore Windows: funziona anche
 ./gioca.sh                                  # Linux/macOS
 ```
 
+All'avvio, subito dopo l'eventuale domanda sulla lingua, il programma ricorda che è **open source** e che il codice è su GitHub:
+
+```
+Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo
+https://github.com/Explo-bot/TextAdventures
+```
+
 Le opzioni si danno al sottocomando `gioca` (`avventura gioca --avventura …`: scritte direttamente dopo `avventura` non sono accettate):
 
 | Opzione di `avventura gioca` | Effetto |
@@ -906,7 +913,9 @@ Il motore cerca le sottocartelle di `avventure/` che contengono un `gioco.md` e 
      Una notte di tempesta, un faro spento, una nave che punta dritta verso gli scogli.
   2) Star Trucker and the Space Chicken of Doom    [nuova]
      Un cargo spaziale, uova aliene e polli mostruosi. Commedia sci-fi da B-movie con mozzarelle.
-  3) 🌐 Lingua: Italiano (cambia / change language)
+  3) Vinny Falco: il caso di Devil's Slide         [nuova]
+     San Francisco, 1928. Un ricco colonnello, un figlio nei guai, una vedova francese dalla storia troppo perfetta. Un noir hard-boiled.
+  4) 🌐 Lingua: Italiano (cambia / change language)
 
   Scegli un numero (q per annullare):
 ```
@@ -1623,6 +1632,8 @@ Le schermate qui sotto sono ottenute collegando il **programma reale** a un serv
 ```
 BOT  Benvenuto! Scegli un'avventura con i pulsanti. Durante il gioco scrivi le tue
      azioni come messaggi; /help mostra i comandi.
+BOT  Avventura è un programma open source: il codice è disponibile su GitHub
+     all'indirizzo https://github.com/Explo-bot/TextAdventures
 BOT  AVVENTURE DISPONIBILI
 
      Il Faro di Punta Nera [nuova]

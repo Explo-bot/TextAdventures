@@ -790,8 +790,9 @@ impl Canale for CanaleTelegram {
                     Err(_) => return Ok(Input::Fine),
                 },
             };
-            // `/start` durante la partita equivale a `/menu`.
+            // `/start` durante la partita equivale a `/menu` (con l'avviso open source).
             if testo.split_whitespace().next() == Some("/start") {
+                self.mostra(&sessione::avviso_open_source(), Stile::Motore)?;
                 return Ok(Input::Comando(Comando::Menu));
             }
             match interpreta_riga(&testo) {

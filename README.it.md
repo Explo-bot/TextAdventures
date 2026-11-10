@@ -29,8 +29,9 @@ la botola si solleva: sotto, una scala di legno scende nel buio della cantina...
 |---|---|---|
 | **Il Faro di Punta Nera** | racconto marinaresco | Ottobre 1893, notte di tempesta. Sei Nicola, diciassette anni, aiutante del guardiano del faro. Il faro è spento e un brigantino punta dritto verso gli scogli: hai poco tempo per riaccenderlo. |
 | **Star Trucker and the Space Chicken of Doom** | commedia sci-fi da B-movie | Anno 2122, cargo spaziale *Rusty Badger*. Delle uova aliene si sono schiuse e i "pulcini" sono cresciuti. Molto. Sei Molly, la meccanica di bordo, forse l'unica sopravvissuta (a parte il gatto Mr. Whiskers). |
+| **Vinny Falco: il caso di Devil's Slide** | noir hard-boiled | San Francisco, 1928. Sei Vinny Falco, detective privato. Un ricco colonnello paralizzato vuole sapere perché il figlio chiede sempre più soldi; poi alla tua porta bussa una vedova francese dalla storia troppo perfetta. Ispirata ai personaggi e alla trama del romanzo *Vinny Falco Detective* di Peter A. Ray. |
 
-Le due avventure sono scritte in inglese (`avventure/faro-punta-nera/`, `avventure/space-chicken/`) e hanno la traduzione italiana, francese, spagnola e tedesca di titolo, introduzione e nomi (`traduzioni/it.toml`, `fr.toml`, `es.toml`, `de.toml`): si giocano in tutte e cinque le lingue. Per aggiungere un'avventura basta una nuova cartella in `avventure/`.
+Le tre avventure sono scritte in inglese (`avventure/faro-punta-nera/`, `avventure/space-chicken/`, `avventure/vinny-falco/`) e hanno la traduzione italiana, francese, spagnola e tedesca di titolo, introduzione e nomi (`traduzioni/it.toml`, `fr.toml`, `es.toml`, `de.toml`): si giocano in tutte e cinque le lingue. Per aggiungere un'avventura basta una nuova cartella in `avventure/`.
 
 ## Modelli AI supportati
 

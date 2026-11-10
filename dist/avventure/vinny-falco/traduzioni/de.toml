@@ -1,0 +1,58 @@
+# Deutsche Übersetzung der Texte, die das Programm dem Spieler direkt zeigt.
+# Die Erzählung schreibt die KI auf Deutsch; diese Namen werden ihr übergeben,
+# damit sie sie immer gleich verwendet. Was fehlt, bleibt auf Englisch.
+
+titolo = "Vinny Falco: Der Fall Devil's Slide"
+descrizione_breve = "San Francisco, 1928. Ein reicher Oberst, ein Sohn in Schwierigkeiten, eine französische Witwe mit einer zu perfekten Geschichte. Ein Hard-boiled-Noir."
+introduzione = """
+San Francisco, Oktober 1928. Die Prohibition ist das Gesetz, geschmuggelter Bourbon die Gewohnheit, und Herbert Hoover verspricht ein Huhn in jedem Topf. Du bist **Vinny Falco**, Privatdetektiv von *Falco & Partner*. Das „Partner“ ist reine Reklame: Der einzige Partner bist du, aber die goldenen Buchstaben an der Tür verleihen einen Hauch von Seriosität. Der abblätternde Putz im Treppenhaus erzählt eine ganz andere Geschichte.
+
+Es ist ein träger Nachmittag. King Olivers Kornett jammert aus deinem neuen Röhrenradio, dem Geschenk eines Glückstags beim Pferderennen, und du döst mit den Füßen auf dem Schreibtisch. Dann klingelt das Telefon.
+"""
+
+[stanze]
+office = "Das Büro von Falco & Partner"
+market_street = "Market Street"
+roadster = "Dein Ford Roadster"
+granger_villa = "Die Villa der Grangers in Devil's Slide"
+cliff_house = "Das Restaurant Cliff House"
+manson_office = "Die Kanzlei von Anwalt Manson"
+diner = "Das Diner in der Montgomery Street"
+chinatown = "Chinatown und der Salon von Madame Sybilla"
+tenderloin = "Eine Gasse im Tenderloin"
+montgomery_block = "Der erste Stock des Montgomery Block"
+julius_apartment = "Die Wohnung von Julius Granger"
+
+[oggetti]
+revolver = "dein Revolver, ein Colt Police Positive Kaliber .38"
+lockpicks = "eine Rolle Dietriche, in Wildleder gewickelt"
+heroin_kit = "eine Metalldose mit Spritzen, geschwärzten Löffeln und einem Beutel mit weißlichem Pulver"
+anonymous_letter = "ein maschinengeschriebener anonymer Brief ohne Unterschrift"
+manson_invitation = "eine Notiz von Anwalt Manson auf Briefpapier: „Abendessen im Cliff House, sieben Uhr. Wir müssen reden.“"
+miles_folder = "eine senffarbene Mappe über Miles Harrington"
+case_binder = "ein dicker Ordner mit rotem Band, mit allen Berichten zum Fall Granger"
+telegram = "ein Telegramm der Detektei aus New York"
+
+[uscite]
+"office.down" = "die knarrende Treppe hinunter zur Market Street"
+"market_street.up" = "die Haustür deines Gebäudes und die Treppe hinauf zum Büro"
+"market_street.in" = "dein Ford Roadster, am Bordstein geparkt"
+"market_street.north" = "die Montgomery Street, zum Diner gegenüber dem Montgomery Block"
+"market_street.east" = "das Granitgebäude mit der Kanzlei von Anwalt Manson"
+"market_street.west" = "die Turk Street, zum Tenderloin"
+"roadster.out" = "der Bordstein der Market Street"
+"roadster.south" = "die Küstenstraße nach Süden, bis Devil's Slide und zur Villa der Grangers"
+"roadster.west" = "die Straße quer durch die Stadt nach Westen, bis zum Ozean und zum Cliff House"
+"granger_villa.out" = "die Kieseinfahrt, in der dein Ford parkt"
+"cliff_house.out" = "der Parkplatz, auf dem dein Ford wartet"
+"manson_office.west" = "der Aufzug und die Eingangshalle zurück zur Market Street"
+"diner.south" = "die Montgomery Street, zurück hinunter zur Market Street"
+"diner.in" = "auf der anderen Straßenseite der Bogeneingang des Montgomery Block"
+"diner.west" = "die Straßen, die nach Westen hinauf nach Chinatown führen"
+"chinatown.east" = "die Straße zurück hinunter zum Diner in der Montgomery Street"
+"chinatown.south" = "die Turk Street, hinunter zum Tenderloin"
+"tenderloin.north" = "die Turk Street, wieder hinauf nach Chinatown"
+"tenderloin.east" = "die Straße zurück zur Market Street"
+"montgomery_block.out" = "die Treppe hinunter zur Montgomery Street, gegenüber dem Diner"
+"montgomery_block.east" = "die Tür mit dem Messingschild JULIUS GRANGER"
+"julius_apartment.west" = "die Tür zum Flur im ersten Stock"

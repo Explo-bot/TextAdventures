@@ -1,0 +1,58 @@
+# Traduction française des textes que le moteur montre directement au joueur.
+# La narration est écrite par l'IA en français ; ces noms lui sont transmis
+# pour qu'elle les utilise toujours de la même façon. Ce qui manque reste en anglais.
+
+titolo = "Vinny Falco : l'affaire de Devil's Slide"
+descrizione_breve = "San Francisco, 1928. Un riche colonel, un fils en difficulté, une veuve française à l'histoire trop parfaite. Un polar hard-boiled."
+introduzione = """
+San Francisco, octobre 1928. La Prohibition est la loi, le bourbon de contrebande est l'habitude, et Herbert Hoover promet un poulet dans chaque marmite. Tu es **Vinny Falco**, détective privé de *Falco & Associés*. « Associés », c'est de la réclame : le seul associé, c'est toi, mais les lettres dorées sur la porte donnent une touche de respectabilité. Le plâtre écaillé du palier raconte une tout autre histoire.
+
+C'est un après-midi paresseux. Le cornet de King Oliver gémit dans ta nouvelle radio à lampes, cadeau d'une journée de chance aux courses, et tu somnoles les pieds sur le bureau. Puis le téléphone sonne.
+"""
+
+[stanze]
+office = "Le bureau de Falco & Associés"
+market_street = "Market Street"
+roadster = "Ta Ford Roadster"
+granger_villa = "La villa des Granger à Devil's Slide"
+cliff_house = "Le restaurant de la Cliff House"
+manson_office = "Le cabinet de maître Manson"
+diner = "Le diner de Montgomery Street"
+chinatown = "Chinatown et le salon de Madame Sybilla"
+tenderloin = "Une ruelle du Tenderloin"
+montgomery_block = "Le premier étage du Montgomery Block"
+julius_apartment = "L'appartement de Julius Granger"
+
+[oggetti]
+revolver = "ton revolver Colt Police Positive calibre 38"
+lockpicks = "un rouleau de crochets de serrurier enveloppé dans une peau de chamois"
+heroin_kit = "une boîte en métal avec des seringues, des cuillères noircies et un sachet de poudre blanchâtre"
+anonymous_letter = "une lettre anonyme tapée à la machine, sans signature"
+manson_invitation = "un mot de maître Manson sur papier à en-tête : « Dîner à la Cliff House, sept heures. Nous devons parler. »"
+miles_folder = "une chemise couleur moutarde sur Miles Harrington"
+case_binder = "un épais classeur au ruban rouge, avec tous les rapports sur l'affaire Granger"
+telegram = "un télégramme de l'agence de détectives de New York"
+
+[uscite]
+"office.down" = "l'escalier qui grince et descend sur Market Street"
+"market_street.up" = "la porte de ton immeuble et l'escalier qui monte au bureau"
+"market_street.in" = "ta Ford Roadster, garée le long du trottoir"
+"market_street.north" = "Montgomery Street, vers le diner en face du Montgomery Block"
+"market_street.east" = "l'immeuble de granit qui abrite le cabinet de maître Manson"
+"market_street.west" = "Turk Street, vers le Tenderloin"
+"roadster.out" = "le trottoir de Market Street"
+"roadster.south" = "la route côtière vers le sud, jusqu'à Devil's Slide et la villa des Granger"
+"roadster.west" = "la route qui traverse la ville vers l'ouest, jusqu'à l'océan et la Cliff House"
+"granger_villa.out" = "l'allée de gravier où ta Ford est garée"
+"cliff_house.out" = "le parking où ta Ford t'attend"
+"manson_office.west" = "l'ascenseur et le hall qui ramènent sur Market Street"
+"diner.south" = "Montgomery Street, qui redescend vers Market Street"
+"diner.in" = "de l'autre côté de la rue, l'entrée en arc du Montgomery Block"
+"diner.west" = "les rues qui montent vers l'ouest, vers Chinatown"
+"chinatown.east" = "la rue qui redescend au diner de Montgomery Street"
+"chinatown.south" = "Turk Street, qui descend vers le Tenderloin"
+"tenderloin.north" = "Turk Street, qui remonte vers Chinatown"
+"tenderloin.east" = "la rue qui ramène à Market Street"
+"montgomery_block.out" = "l'escalier qui descend sur Montgomery Street, en face du diner"
+"montgomery_block.east" = "la porte à la plaque de laiton JULIUS GRANGER"
+"julius_apartment.west" = "la porte qui donne sur le couloir du premier étage"
