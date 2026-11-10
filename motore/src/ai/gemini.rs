@@ -155,6 +155,10 @@ struct Raccolta {
     blocco: Option<String>,
     token_prompt: Option<u64>,
     token_generati: Option<u64>,
+    /// Token spesi nel ragionamento (solo per il log).
+    token_pensiero: Option<u64>,
+    /// `modelVersion` dichiarato dal server (solo per il log).
+    versione_modello: Option<String>,
     errore: Option<String>,
 }
 
@@ -194,6 +198,12 @@ impl Raccolta {
         if let Some(n) = valore["usageMetadata"]["candidatesTokenCount"].as_u64() {
             self.token_generati = Some(n);
         }
+        if let Some(n) = valore["usageMetadata"]["thoughtsTokenCount"].as_u64() {
+            self.token_pensiero = Some(n);
+        }
+        if let Some(v) = valore["modelVersion"].as_str() {
+            self.versione_modello = Some(v.to_string());
+        }
     }
 }
 
@@ -217,7 +227,12 @@ impl ClientGemini {
             };
             info!(
                 url = %url,
+                modello = %self.modello,
+                flusso = flusso.is_some(),
                 messaggi = richiesta.messaggi.len(),
+                caratteri_prompt = richiesta.messaggi.iter().map(|m| m.contenuto.len()).sum::<usize>(),
+                max_token = self.max_token,
+                ragionamento = ?corpo["generationConfig"]["thinkingConfig"]["thinkingLevel"].as_str(),
                 "richiesta al narratore (gemini)"
             );
             debug!(corpo = %corpo, "corpo della richiesta");
@@ -257,6 +272,18 @@ impl ClientGemini {
             if flusso.is_none() {
                 raccolta.aggiungi(&corpo_json(&risposta)?, &mut |_| {});
             }
+            info!(
+                fine = ?raccolta.fine,
+                blocco = ?raccolta.blocco,
+                errore = ?raccolta.errore,
+                token_prompt = ?raccolta.token_prompt,
+                token_generati = ?raccolta.token_generati,
+                token_pensiero = ?raccolta.token_pensiero,
+                versione_modello = ?raccolta.versione_modello,
+                caratteri_testo = raccolta.testo.len(),
+                ms_dall_inizio_turno = u64::try_from(inizio.elapsed().as_millis()).unwrap_or(u64::MAX),
+                "esito della risposta (gemini)"
+            );
             if let Some(errore) = raccolta.errore.take() {
                 return Err(ErroreAi::Formato(format!("errore di Gemini: {errore}")));
             }

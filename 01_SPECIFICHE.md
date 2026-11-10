@@ -521,14 +521,15 @@ Composto in quest'ordine, con intestazioni chiare:
    - applica con coerenza le Meccaniche della stanza e le Regole del mondo; azioni impossibili o insensate → narra il fallimento senza modificare lo stato;
    - usa solo id di stanze e oggetti esistenti (elencati nel contesto); non inventare oggetti utilizzabili;
    - sposta il giocatore solo attraverso le **uscite disponibili** fornite dal motore (salvo `spostamenti_liberi`);
+   - quando un oggetto nascosto viene scoperto rendilo visibile (`oggetti_stanza_aggiungi`), quando il giocatore lo prende usa `inventario_aggiungi`; la Descrizione di una stanza è quella originale: ciò che c'è ora lo dice solo lo «Stato attuale della stanza» (punto 3), che prevale sempre; non descrivere mai come presente un oggetto già preso, spostato o consumato, anche se la Descrizione lo cita;
    - dichiara `vittoria`/`sconfitta` solo quando le condizioni del gioco sono soddisfatte;
    - narrazione di 40–180 parole, evocativa ma concreta; menziona le uscite visibili quando il giocatore entra in una stanza o si guarda intorno;
    - aggiorna `memoria` come riassunto conciso e cumulativo (max ~1500 caratteri) dei fatti utili a ricordare la partita;
    - rispondi **solo** con un oggetto JSON conforme allo schema 6.4, senza testo fuori dal JSON.
 2. **Gioco**: front matter e tutte le sezioni di `gioco.md` (tranne nulla: è tutto contesto).
-3. **Stanza corrente**: front matter + tutte le sezioni (incluse Segreti e Meccaniche), più lo stato dinamico della stanza.
+3. **Stanza corrente**: front matter (senza `oggetti` e `oggetti_nascosti`, che sono quelli iniziali) + tutte le sezioni (incluse Segreti e Meccaniche), più lo «Stato attuale della stanza»: oggetti presenti ora, oggetti nascosti non ancora scoperti, inventario e note permanenti. Lo stato attuale prevale sulla Descrizione, che resta quella di inizio partita.
 4. **Uscite**: per ciascuna uscita della stanza corrente: direzione, destinazione (id e nome), descrizione, `disponibile: sì/no` e motivo (calcolati dal motore in base a flag/inventario), `nascosta`.
-5. **Stanze adiacenti**: solo `id`, `nome` e sezione `Descrizione` (nessun segreto).
+5. **Stanze adiacenti**: solo `id`, `nome` e sezione `Descrizione` (nessun segreto); l'intestazione avverte che è la descrizione originale e che gli oggetti citati potrebbero non esserci più.
 6. **Catalogo**: elenco di tutti gli id di stanza e di oggetto validi con nome leggibile.
 7. **Schema della risposta** (6.4) con un esempio.
 
@@ -900,6 +901,6 @@ Il finto aggiorna `memoria` concatenando l'ultima azione (troncata).
 - Avvio < 1 s; nessun blocco dell'interfaccia senza indicatore di attesa.
 - Percorsi gestiti con `PathBuf` (spazi e caratteri accentati nei percorsi Windows).
 - Un turno fallito non corrompe mai lo stato.
-- Registro `partite/avventura.log` a rotazione: superati 5 MB diventa `avventura.log.1` (sostituendo il precedente) e se ne apre uno nuovo, anche con il bot sempre attivo. A livello `info` contiene stato e dimensione delle risposte ma non i corpi completi (prompt e risposte, quindi anche le azioni dei giocatori), che vengono registrati solo con `--debug`.
+- Registro `partite/avventura.log` a rotazione: superati 5 MB diventa `avventura.log.1` (sostituendo il precedente) e se ne apre uno nuovo, anche con il bot sempre attivo. A livello `info` contiene stato e dimensione delle risposte e le misure per diagnosticare lentezze e timeout: per ogni tentativo HTTP i millisecondi fino alle intestazioni, al primo dato del flusso e totali, la pausa più lunga tra due pezzi del flusso, righe e byte ricevuti e il timeout configurato; se la richiesta o il flusso si interrompono, quanto era già arrivato e da quanto tempo non arrivava nulla; per Gemini anche modello, livello di ragionamento, `max_token`, caratteri del prompt, `finishReason`, `blockReason`, token di prompt, di risposta e di ragionamento (`thoughtsTokenCount`) e `modelVersion`. Non contiene i corpi completi (prompt e risposte, quindi anche le azioni dei giocatori), che vengono registrati solo con `--debug`, insieme al testo del flusso ricevuto prima di un'interruzione.
 - Bot Telegram: un errore in una sessione (panic compreso, catturato al confine del thread) non ferma il bot né le altre sessioni; Ctrl+C chiude in modo ordinato (termina i turni in corso entro un limite, salva l'offset).
 - Fornitore `locale`: il modello viene caricato una sola volta e condiviso; con `max_turni_paralleli = 1` nessuna richiesta concorrente.

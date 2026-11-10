@@ -682,7 +682,7 @@ B-movie sci-fi comedy: horror-film tension constantly ruined by absurd details. 
 - **Self-destruct**: when it is activated set `self_destruct_active = true` and `self_destruct_turn` = current turn. From then on AUNTIE announces the countdown every turn ("Sweetie, 7 minutes to the explosion, did you take your jumper?"). After 10 turns without `shuttle_launched` → defeat.
 - **Combinations**: the player can combine items. Valid combination: `coolant_tank` + `rubber_hose` + `duct_tape` → `cryo_cannon` (remove the tank and the hose; the duct tape stays, it is infinite like in every film). Other sensible combinations can be narrated as funny attempts but do not create new items.
 - **Mr. Whiskers** can only be in the carrier: `mr_whiskers` can enter the inventory only if `cat_carrier` is there.
-- **Discovering the weak point**: the player can also work it out on their own (the cargo hold is the only place with no trace of the creatures); `weakness_found` is for the score and for AUNTIE to comment on the discovery, it is not required to use the mozzarella.
+- **Discovering the weak point**: the player may suspect it on their own (the cargo hold is the only place with no trace of the creatures), but Molly only takes a sour mozzarella once she knows what it is for, that is after the analysis in the laboratory (`weakness_found = true`). Before that, she refuses to pick one up with a disgusted excuse about the smell (see the cargo hold Mechanics), without revealing that it would be useful.
 - **Score**: +5 key card, +5 Mr. Whiskers in the carrier, +10 sample analysis (`weakness_found`), +15 conspiracy revealed, +10 cryo cannon, +10 self-destruct activated, +15 monster frozen, +15 monster ejected, +15 shuttle launch.
 - Few, precise items: do not invent weapons, flamethrowers, suits or other usable tools. Furniture can be described but not taken.
 ```
@@ -962,7 +962,9 @@ As soon as the lift doors open, you are hit by a smell so powerful your eyes wat
 - The coolant tank, connected to a hose, becomes a weapon able to freeze even the biggest monster.
 
 ## Mechanics
-- Taking a mozzarella: allowed (there is at most one `sour_mozzarella` in the inventory at a time; there are infinitely many in the hold). AUNTIE: "Sweetie, you smell like a pit-aged cheese. I love you anyway."
+- The pallets of sour mozzarella never run out: the hold is always full of them, even when `sour_mozzarella` is not listed among the items present now (that only means Molly already took one). There is at most one `sour_mozzarella` in the inventory at a time.
+- Taking a mozzarella **before** `weakness_found = true`: Molly has no idea it could be useful and refuses, disgusted. Narrate a soft, plausible excuse tied to the stench (she gags, her eyes water, she would rather lick an engine than touch that thing, "why on earth would anyone carry rotten cheese around?"), with no state change, even if the player insists or gives a reason. Never hint that the mozzarella is useful or that the creatures fear it.
+- Taking a mozzarella **after** `weakness_found = true` (Molly learned in the laboratory that the creatures hate sour dairy products): allowed, with `inventario_aggiungi` even if it is not listed among the items present now. Molly holds her nose and grabs one. AUNTIE: "Sweetie, you smell like a pit-aged cheese. I love you anyway."
 - Removing the tank: requires `wrench` in the inventory; without it, the bolts do not move. With the wrench: `coolant_tank` goes into the inventory.
 - Combining here (or elsewhere) tank + hose + duct tape → `cryo_cannon` (see World rules, +10).
 - Opening the hangar hatch without the self-destruct active: impossible (the engine blocks it), AUNTIE explains that it opens "only in a real emergency. This is a normal emergency."

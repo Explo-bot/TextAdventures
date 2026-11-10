@@ -60,7 +60,10 @@ items: you may describe scenery, but not put it in the inventory.
 with \"available: yes\" provided by the engine, unless the game allows free movement. \
 Hidden exits that are not available must not be mentioned.
 7. When a hidden item is discovered, make it visible by adding it to the room items \
-(oggetti_stanza_aggiungi); when the player takes it, use inventario_aggiungi.
+(oggetti_stanza_aggiungi); when the player takes it, use inventario_aggiungi. The \
+Description of a room is the original one: what is in the room now is stated only by \
+\"Current state of the room\", which always prevails. Never describe as present an item \
+that has been taken, moved or used up, even if the Description mentions it.
 8. Declare \"vittoria\" (victory) or \"sconfitta\" (defeat) only when the game conditions \
 are actually met; otherwise the outcome stays \"in_corso\" (in progress).
 9. Write a narration of 40–180 words, evocative but concrete. When the player enters a \
@@ -126,7 +129,9 @@ un'uscita con \"disponibile: sì\" fornita dal motore, a meno che il gioco conse
 spostamenti liberi. Le uscite nascoste non disponibili non vanno nominate.
 7. Quando un oggetto nascosto viene scoperto, rendilo visibile aggiungendolo agli oggetti \
 della stanza (oggetti_stanza_aggiungi); quando il giocatore lo prende, usa \
-inventario_aggiungi.
+inventario_aggiungi. La Descrizione di una stanza è quella originale: ciò che c'è ora nella \
+stanza lo dice solo lo «Stato attuale della stanza», che prevale sempre. Non descrivere mai \
+come presente un oggetto già preso, spostato o consumato, anche se la Descrizione lo cita.
 8. Dichiara \"vittoria\" o \"sconfitta\" solo quando le condizioni del gioco sono \
 effettivamente soddisfatte; altrimenti l'esito resta \"in_corso\".
 9. Scrivi una narrazione di 40–180 parole, evocativa ma concreta. Quando il giocatore \
@@ -299,20 +304,10 @@ pub fn messaggio_sistema(avventura: &Avventura, stato: &Stato, narrazione: Lingu
                 tr_in!(l, "STANZA CORRENTE", "CURRENT ROOM"),
                 stanza.id,
                 stanza.nome,
-                stanza.front_matter.trim()
+                front_matter_senza_oggetti(&stanza.front_matter)
             );
             sezioni_markdown(&mut t, &stanza.sezioni);
-            let dinamico = stato.stanze.get(&stanza.id).cloned().unwrap_or_default();
-            let _ = write!(
-                t,
-                "\n### {}\n{}\n",
-                tr_in!(
-                    l,
-                    "Stato dinamico della stanza",
-                    "Dynamic state of the room"
-                ),
-                serde_json::to_string_pretty(&dinamico).unwrap_or_default()
-            );
+            scrivi_stato_attuale(&mut t, avventura, stato, stanza);
             scrivi_uscite(&mut t, avventura, stato);
             scrivi_adiacenti(&mut t, avventura, stanza);
         }
@@ -397,6 +392,107 @@ fn scrivi_lingua_narrazione(t: &mut String, avventura: &Avventura, narrazione: L
     }
 }
 
+/// Front matter della stanza senza `oggetti` e `oggetti_nascosti`: sono gli
+/// oggetti *iniziali* e, mandati all'AI, contraddirebbero lo stato attuale
+/// (il modello rimetterebbe nella stanza oggetti già raccolti). Gli oggetti
+/// presenti ora sono nella sezione «Stato attuale della stanza».
+fn front_matter_senza_oggetti(front_matter: &str) -> String {
+    let Ok(mut tabella) = toml::from_str::<toml::Table>(front_matter) else {
+        return front_matter.trim().to_string();
+    };
+    let tolto_visibili = tabella.remove("oggetti").is_some();
+    let tolto_nascosti = tabella.remove("oggetti_nascosti").is_some();
+    if !tolto_visibili && !tolto_nascosti {
+        return front_matter.trim().to_string();
+    }
+    toml::to_string(&tabella)
+        .map(|t| t.trim().to_string())
+        .unwrap_or_else(|_| front_matter.trim().to_string())
+}
+
+/// Stato attuale della stanza corrente, che prevale sulla Descrizione originale:
+/// oggetti presenti ora, oggetti nascosti non ancora scoperti, note permanenti.
+fn scrivi_stato_attuale(t: &mut String, avventura: &Avventura, stato: &Stato, stanza: &Stanza) {
+    let l = avventura.lingua();
+    let dinamico = stato.stanze.get(&stanza.id).cloned().unwrap_or_default();
+    let (si, no, nessuno) = tr_in!(l, ("sì", "no", "nessuno"), ("yes", "no", "none"));
+    let elenco = |ids: &[&String]| -> String {
+        if ids.is_empty() {
+            return format!(" {nessuno}\n");
+        }
+        let mut s = String::from("\n");
+        for id in ids {
+            let _ = writeln!(s, "  - {id}: {}", avventura.nome_oggetto_originale(id));
+        }
+        s
+    };
+    let presenti: Vec<&String> = dinamico.oggetti.iter().collect();
+    // Un oggetto nascosto è già stato scoperto se ora è visibile in una stanza
+    // o nell'inventario; altrimenti è ancora da scoprire (o è stato consumato:
+    // la memoria della partita lo dice).
+    let da_scoprire: Vec<&String> = stanza
+        .oggetti_nascosti
+        .iter()
+        .filter(|o| {
+            !stato.inventario.contains(o) && !stato.stanze.values().any(|s| s.oggetti.contains(o))
+        })
+        .collect();
+    let inventario: Vec<&String> = stato.inventario.iter().collect();
+
+    let _ = write!(
+        t,
+        "{}",
+        tr_in!(
+            l,
+            format!(
+                "\n### Stato attuale della stanza (prevale sulla Descrizione)\n\
+                 La Descrizione qui sopra è quella originale, di inizio partita. Gli oggetti che \
+                 cita ma che non compaiono qui sotto tra gli oggetti presenti ora NON ci sono più \
+                 (presi, spostati o consumati): non descriverli come presenti.\n\
+                 - Già visitata: {}\n\
+                 - Oggetti presenti ora:{}\
+                 - Oggetti nascosti ancora da scoprire (non nominarli finché non vengono scoperti):{}\
+                 - Oggetti che il giocatore ha con sé (sono nell'inventario, non nella stanza):{}",
+                if dinamico.visitata { si } else { no },
+                elenco(&presenti),
+                elenco(&da_scoprire),
+                elenco(&inventario)
+            ),
+            format!(
+                "\n### Current state of the room (it prevails over the Description)\n\
+                 The Description above is the original one, from the start of the game. Items it \
+                 mentions that are not listed below among the items present now are NO longer \
+                 there (taken, moved or used up): do not describe them as present.\n\
+                 - Already visited: {}\n\
+                 - Items present now:{}\
+                 - Hidden items still to be discovered (do not mention them until they are discovered):{}\
+                 - Items the player carries (they are in the inventory, not in the room):{}",
+                if dinamico.visitata { si } else { no },
+                elenco(&presenti),
+                elenco(&da_scoprire),
+                elenco(&inventario)
+            )
+        )
+    );
+    let _ = write!(
+        t,
+        "{}",
+        tr_in!(
+            l,
+            "- Cambiamenti permanenti della stanza (prevalgono sulla Descrizione):",
+            "- Permanent changes to the room (they prevail over the Description):"
+        )
+    );
+    if dinamico.note.is_empty() {
+        let _ = writeln!(t, " {nessuno}");
+    } else {
+        t.push('\n');
+        for n in &dinamico.note {
+            let _ = writeln!(t, "  - {n}");
+        }
+    }
+}
+
 fn scrivi_uscite(t: &mut String, avventura: &Avventura, stato: &Stato) {
     let l = avventura.lingua();
     t.push_str(tr_in!(
@@ -452,8 +548,8 @@ fn scrivi_adiacenti(t: &mut String, avventura: &Avventura, stanza: &Stanza) {
     }
     t.push_str(tr_in!(
         avventura.lingua(),
-        "\n# STANZE ADIACENTI (solo descrizione pubblica)\n",
-        "\n# ADJACENT ROOMS (public description only)\n"
+        "\n# STANZE ADIACENTI (solo descrizione pubblica, originale: gli oggetti citati potrebbero non esserci più)\n",
+        "\n# ADJACENT ROOMS (public description only, the original one: the items it mentions may no longer be there)\n"
     ));
     for id in destinazioni {
         if let Some(s) = avventura.stanza(id) {
@@ -537,6 +633,52 @@ mod test {
         assert_eq!(utente["azione_giocatore"], "<<<apro la porta>>>");
         assert_eq!(utente["stato"]["stanza_corrente"], "a");
         assert!(!m[1].contenuto.contains("segreto-del-motore"));
+    }
+
+    #[test]
+    fn front_matter_senza_oggetti_iniziali() {
+        let fm = "id = \"a\"\nnome = \"Stanza A\"\noggetti = [\"chiave\", \"lampada\"]\n\
+                  oggetti_nascosti = [\n  \"gemma\",\n]\n\n[uscite.nord]\nverso = \"b\"\n";
+        let ripulito = front_matter_senza_oggetti(fm);
+        assert!(!ripulito.contains("oggetti"), "{ripulito}");
+        assert!(!ripulito.contains("chiave") && !ripulito.contains("gemma"));
+        let tabella: toml::Table = toml::from_str(&ripulito).unwrap();
+        assert_eq!(tabella["id"].as_str(), Some("a"));
+        assert_eq!(tabella["uscite"]["nord"]["verso"].as_str(), Some("b"));
+        // Senza oggetti (o TOML illeggibile) il testo resta com'è.
+        assert_eq!(front_matter_senza_oggetti("id = \"a\"\n"), "id = \"a\"");
+        assert_eq!(front_matter_senza_oggetti("non toml ["), "non toml [");
+    }
+
+    #[test]
+    fn lo_stato_attuale_prevale_sugli_oggetti_iniziali() {
+        let a = avventura_di_prova();
+        let mut s = Stato::nuovo(&a);
+        // Inizio: la chiave è nella stanza «a».
+        let sis = messaggio_sistema(&a, &s, Lingua::It);
+        assert!(sis.contains("### Stato attuale della stanza"));
+        assert!(sis.contains("- Oggetti presenti ora:\n  - chiave: una chiave\n"));
+        assert!(sis.contains("- Oggetti che il giocatore ha con sé (sono nell'inventario, non nella stanza):\n  - moneta:"));
+        // Il giocatore prende la chiave: la stanza non la mostra più.
+        s.inventario.push("chiave".into());
+        s.stanze.get_mut("a").unwrap().oggetti.clear();
+        s.stanze
+            .get_mut("a")
+            .unwrap()
+            .note
+            .push("Il tappeto è stato spostato.".into());
+        let sis = messaggio_sistema(&a, &s, Lingua::It);
+        assert!(sis.contains("- Oggetti presenti ora: nessuno\n"));
+        assert!(sis.contains("  - Il tappeto è stato spostato.\n"));
+        // Stanza «b»: la gemma nascosta è da scoprire finché non compare.
+        s.stanza_corrente = "b".into();
+        let sis = messaggio_sistema(&a, &s, Lingua::It);
+        assert!(!sis.contains("oggetti_nascosti"));
+        assert!(sis.contains("(non nominarli finché non vengono scoperti):\n  - gemma:"));
+        s.stanze.get_mut("b").unwrap().oggetti.push("gemma".into());
+        let sis = messaggio_sistema(&a, &s, Lingua::It);
+        assert!(sis.contains("(non nominarli finché non vengono scoperti): nessuno\n"));
+        assert!(sis.contains("- Oggetti presenti ora:\n  - gemma:"));
     }
 
     #[test]

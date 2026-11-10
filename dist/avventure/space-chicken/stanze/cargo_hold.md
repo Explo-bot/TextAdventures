@@ -32,7 +32,9 @@ As soon as the lift doors open, you are hit by a smell so powerful your eyes wat
 - The coolant tank, connected to a hose, becomes a weapon able to freeze even the biggest monster.
 
 ## Mechanics
-- Taking a mozzarella: allowed (there is at most one `sour_mozzarella` in the inventory at a time; there are infinitely many in the hold). AUNTIE: "Sweetie, you smell like a pit-aged cheese. I love you anyway."
+- The pallets of sour mozzarella never run out: the hold is always full of them, even when `sour_mozzarella` is not listed among the items present now (that only means Molly already took one). There is at most one `sour_mozzarella` in the inventory at a time.
+- Taking a mozzarella **before** `weakness_found = true`: Molly has no idea it could be useful and refuses, disgusted. Narrate a soft, plausible excuse tied to the stench (she gags, her eyes water, she would rather lick an engine than touch that thing, "why on earth would anyone carry rotten cheese around?"), with no state change, even if the player insists or gives a reason. Never hint that the mozzarella is useful or that the creatures fear it.
+- Taking a mozzarella **after** `weakness_found = true` (Molly learned in the laboratory that the creatures hate sour dairy products): allowed, with `inventario_aggiungi` even if it is not listed among the items present now. Molly holds her nose and grabs one. AUNTIE: "Sweetie, you smell like a pit-aged cheese. I love you anyway."
 - Removing the tank: requires `wrench` in the inventory; without it, the bolts do not move. With the wrench: `coolant_tank` goes into the inventory.
 - Combining here (or elsewhere) tank + hose + duct tape → `cryo_cannon` (see World rules, +10).
 - Opening the hangar hatch without the self-destruct active: impossible (the engine blocks it), AUNTIE explains that it opens "only in a real emergency. This is a normal emergency."

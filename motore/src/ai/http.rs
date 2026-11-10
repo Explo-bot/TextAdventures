@@ -17,12 +17,17 @@ use std::error::Error as _;
 use std::io::{self, BufRead};
 use std::sync::Mutex;
 use std::thread;
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 use reqwest::blocking::Client;
 use reqwest::header::{HeaderName, HeaderValue};
 use serde_json::Value;
-use tracing::{info, warn};
+use tracing::{debug, info, warn};
+
+/// Millisecondi trascorsi da `da` (per il log).
+fn ms(da: Instant) -> u64 {
+    u64::try_from(da.elapsed().as_millis()).unwrap_or(u64::MAX)
+}
 
 use super::ErroreAi;
 use crate::config::{ConfigAi, MASCHERATO};
@@ -155,6 +160,7 @@ impl ClientHttp {
     ) -> Result<RispostaHttp, ErroreAi> {
         let mut tentativo = 1;
         loop {
+            let partenza = Instant::now();
             let mut richiesta = self.client.post(url).json(corpo);
             if self.stile == StileChiave::Anthropic {
                 richiesta = richiesta.header("anthropic-version", VERSIONE_ANTHROPIC);
@@ -172,15 +178,41 @@ impl ClientHttp {
             let esito = match richiesta.send() {
                 Ok(r) => {
                     let stato = r.status().as_u16();
+                    info!(
+                        stato,
+                        tentativo,
+                        ms_intestazioni = ms(partenza),
+                        timeout_s = self.timeout_secondi,
+                        "intestazioni HTTP ricevute"
+                    );
                     match riga.as_deref_mut() {
                         Some(f) if r.status().is_success() => {
-                            return self.leggi_a_righe(stato, r, f);
+                            return self.leggi_a_righe(stato, r, f, partenza);
                         }
-                        _ => r.text().map(|corpo| RispostaHttp { stato, corpo }),
+                        _ => r.text().map(|corpo| {
+                            info!(
+                                stato,
+                                byte = corpo.len(),
+                                ms_totali = ms(partenza),
+                                "corpo HTTP letto"
+                            );
+                            RispostaHttp { stato, corpo }
+                        }),
                     }
                 }
                 Err(e) => Err(e),
             };
+            if let Err(e) = &esito {
+                warn!(
+                    tentativo,
+                    ms_trascorsi = ms(partenza),
+                    timeout_s = self.timeout_secondi,
+                    scaduto = e.is_timeout(),
+                    connessione = e.is_connect(),
+                    errore = %descrivi(e),
+                    "richiesta HTTP fallita"
+                );
+            }
             let ultimo = tentativo >= self.max_tentativi;
             match esito {
                 Ok(r) if (r.stato == 429 || r.stato >= 500) && !ultimo => {
@@ -216,22 +248,58 @@ impl ClientHttp {
         stato: u16,
         risposta: reqwest::blocking::Response,
         riga: &mut dyn FnMut(&str),
+        partenza: Instant,
     ) -> Result<RispostaHttp, ErroreAi> {
         let mut lettore = io::BufReader::new(risposta);
         let mut corpo = String::new();
         let mut buffer = Vec::new();
+        // Misure per diagnosticare i flussi lenti o bloccati (es. timeout di Gemini).
+        let mut righe = 0u64;
+        let mut primo_dato: Option<u64> = None;
+        let mut ultimo_dato = Instant::now();
+        let mut pausa_max = 0u64;
         loop {
             buffer.clear();
-            let letti = lettore
-                .read_until(b'\n', &mut buffer)
-                .map_err(|e| self.traduci_errore_io(&e))?;
+            let letti = match lettore.read_until(b'\n', &mut buffer) {
+                Ok(n) => n,
+                Err(e) => {
+                    let errore = self.traduci_errore_io(&e);
+                    warn!(
+                        righe,
+                        byte = corpo.len(),
+                        ms_trascorsi = ms(partenza),
+                        ms_primo_dato = ?primo_dato,
+                        ms_dall_ultimo_dato = ms(ultimo_dato),
+                        ms_pausa_max = pausa_max,
+                        timeout_s = self.timeout_secondi,
+                        errore = %errore,
+                        "lettura del flusso interrotta"
+                    );
+                    debug!(corpo_parziale = %corpo, "flusso ricevuto prima dell'interruzione");
+                    return Err(errore);
+                }
+            };
             if letti == 0 {
                 break;
             }
+            let pausa = ms(ultimo_dato);
+            ultimo_dato = Instant::now();
+            primo_dato.get_or_insert_with(|| ms(partenza));
+            pausa_max = pausa_max.max(pausa);
+            righe += 1;
             let testo = String::from_utf8_lossy(&buffer);
             corpo.push_str(&testo);
             riga(testo.trim_end_matches(['\r', '\n']));
         }
+        info!(
+            stato,
+            righe,
+            byte = corpo.len(),
+            ms_primo_dato = ?primo_dato,
+            ms_pausa_max = pausa_max,
+            ms_totali = ms(partenza),
+            "flusso HTTP completato"
+        );
         Ok(RispostaHttp { stato, corpo })
     }
 
