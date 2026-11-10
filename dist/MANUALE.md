@@ -872,14 +872,14 @@ gioca.bat                                   # lanciatore Windows: funziona anche
 ./gioca.sh                                  # Linux/macOS
 ```
 
-All'avvio, subito dopo l'eventuale domanda sulla lingua, il programma ricorda che è **open source** e che il codice è su GitHub, e che il racconto da cui è tratta l'avventura di Vinny Falco si legge gratis su gronk.it:
+All'avvio, subito dopo l'eventuale domanda sulla lingua, il programma ricorda che è **open source** e che il codice è su GitHub:
 
 ```
 Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo
 https://github.com/Explo-bot/TextAdventures
-Il racconto «Vinny Falco Detective» di Peter A. Ray, da cui è tratta l'avventura di Vinny
-Falco, è disponibile gratuitamente su https://gronk.it
 ```
+
+Chi inizia una partita a *Vinny Falco: il caso di Devil's Slide* trova in fondo all'introduzione il link al racconto da cui è tratta, *Vinny Falco Detective* di Peter A. Ray, che si legge gratis su https://gronk.it.
 
 Le opzioni si danno al sottocomando `gioca` (`avventura gioca --avventura …`: scritte direttamente dopo `avventura` non sono accettate):
 
@@ -1636,8 +1636,6 @@ BOT  Benvenuto! Scegli un'avventura con i pulsanti. Durante il gioco scrivi le t
      azioni come messaggi; /help mostra i comandi.
 BOT  Avventura è un programma open source: il codice è disponibile su GitHub
      all'indirizzo https://github.com/Explo-bot/TextAdventures
-     Il racconto «Vinny Falco Detective» di Peter A. Ray, da cui è tratta
-     l'avventura di Vinny Falco, è disponibile gratuitamente su https://gronk.it
 BOT  AVVENTURE DISPONIBILI
 
      Il Faro di Punta Nera [nuova]

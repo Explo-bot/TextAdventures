@@ -33,34 +33,24 @@ use crate::uscite;
 /// Indirizzo del progetto su GitHub.
 pub const URL_PROGETTO: &str = "https://github.com/Explo-bot/TextAdventures";
 
-/// Sito dove si legge gratuitamente il racconto da cui è tratta l'avventura
-/// `vinny-falco`.
-pub const URL_RACCONTO: &str = "https://gronk.it";
-
 /// Avviso mostrato a ogni avvio (e a ogni `/start` del bot): il programma è
-/// open source e il codice è su GitHub; il racconto «Vinny Falco Detective»,
-/// da cui è tratta un'avventura, è gratuito su gronk.it.
+/// open source e il codice è su GitHub.
 pub fn avviso_open_source() -> String {
     tr!(
         format!(
-            "Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo {URL_PROGETTO}\n\
-             Il racconto «Vinny Falco Detective» di Peter A. Ray, da cui è tratta l'avventura di Vinny Falco, è disponibile gratuitamente su {URL_RACCONTO}"
+            "Avventura è un programma open source: il codice è disponibile su GitHub all'indirizzo {URL_PROGETTO}"
         ),
         format!(
-            "Avventura is open source software: the code is available on GitHub at {URL_PROGETTO}\n\
-             The story \"Vinny Falco Detective\" by Peter A. Ray, on which the Vinny Falco adventure is based, is available for free at {URL_RACCONTO}"
+            "Avventura is open source software: the code is available on GitHub at {URL_PROGETTO}"
         ),
         format!(
-            "Avventura est un logiciel libre (open source) : le code est disponible sur GitHub à l'adresse {URL_PROGETTO}\n\
-             Le récit « Vinny Falco Detective » de Peter A. Ray, dont est tirée l'aventure de Vinny Falco, est disponible gratuitement sur {URL_RACCONTO}"
+            "Avventura est un logiciel libre (open source) : le code est disponible sur GitHub à l'adresse {URL_PROGETTO}"
         ),
         format!(
-            "Avventura es un programa de código abierto: el código está disponible en GitHub en {URL_PROGETTO}\n\
-             El relato «Vinny Falco Detective» de Peter A. Ray, en el que se basa la aventura de Vinny Falco, está disponible gratis en {URL_RACCONTO}"
+            "Avventura es un programa de código abierto: el código está disponible en GitHub en {URL_PROGETTO}"
         ),
         format!(
-            "Avventura ist Open-Source-Software: Der Code ist auf GitHub verfügbar unter {URL_PROGETTO}\n\
-             Die Erzählung „Vinny Falco Detective“ von Peter A. Ray, auf der das Vinny-Falco-Abenteuer beruht, gibt es kostenlos unter {URL_RACCONTO}"
+            "Avventura ist Open-Source-Software: Der Code ist auf GitHub verfügbar unter {URL_PROGETTO}"
         )
     )
 }

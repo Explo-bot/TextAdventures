@@ -1459,6 +1459,8 @@ San Francisco, October 1928. Prohibition is the law, bootleg bourbon is the cust
 
 It is a lazy afternoon. King Oliver's cornet moans from your new valve radio, the gift of a lucky day at the races, and you are dozing with your feet on the desk. Then the telephone rings.
 
+(This adventure is inspired by the story "Vinny Falco Detective" by Peter A. Ray, available for free at https://gronk.it)
+
 ## Setting
 San Francisco at the end of the Roaring Twenties: fog rolling in from the bay, cable cars, speakeasies, Chinatown's red lanterns, the rotten heart of the Tenderloin, the old Montgomery Block where artists and nobodies live behind brass name plates. South of the city the coast road climbs to **Devil's Slide**, where the Granger villa hangs over the ocean.
 
@@ -1943,6 +1945,8 @@ introduzione = """
 San Francisco, ottobre 1928. Il proibizionismo è la legge, il bourbon di contrabbando è l'abitudine, e Herbert Hoover promette un pollo in ogni pentola. Tu sei **Vinny Falco**, detective privato della *Falco e Associati*. «Associati» è solo una trovata pubblicitaria: l'unico socio sei tu, ma la scritta sulla porta dà un tocco di rispettabilità. L'intonaco scrostato del pianerottolo racconta tutta un'altra storia.
 
 È un pomeriggio pigro. La cornetta di King Oliver si lamenta dalla tua nuova radio a valvole, regalo di una giornata fortunata alle corse, e tu sonnecchi con i piedi sulla scrivania. Poi il telefono squilla.
+
+(Questa avventura è tratta dal racconto «Vinny Falco Detective» di Peter A. Ray, disponibile gratuitamente su https://gronk.it)
 """
 
 [stanze]
@@ -2008,6 +2012,8 @@ introduzione = """
 San Francisco, octobre 1928. La Prohibition est la loi, le bourbon de contrebande est l'habitude, et Herbert Hoover promet un poulet dans chaque marmite. Tu es **Vinny Falco**, détective privé de *Falco & Associés*. « Associés », c'est de la réclame : le seul associé, c'est toi, mais les lettres dorées sur la porte donnent une touche de respectabilité. Le plâtre écaillé du palier raconte une tout autre histoire.
 
 C'est un après-midi paresseux. Le cornet de King Oliver gémit dans ta nouvelle radio à lampes, cadeau d'une journée de chance aux courses, et tu somnoles les pieds sur le bureau. Puis le téléphone sonne.
+
+(Cette aventure est tirée du récit « Vinny Falco Detective » de Peter A. Ray, disponible gratuitement sur https://gronk.it)
 """
 
 [stanze]
@@ -2073,6 +2079,8 @@ introduzione = """
 San Francisco, octubre de 1928. La Ley Seca es la ley, el bourbon de contrabando es la costumbre, y Herbert Hoover promete un pollo en cada olla. Eres **Vinny Falco**, detective privado de *Falco y Asociados*. Lo de «Asociados» es pura publicidad: el único socio eres tú, pero las letras doradas de la puerta dan un toque de respetabilidad. El yeso desconchado del rellano cuenta otra historia.
 
 Es una tarde perezosa. La corneta de King Oliver gime en tu nueva radio de válvulas, regalo de un día de suerte en las carreras, y dormitas con los pies sobre el escritorio. Entonces suena el teléfono.
+
+(Esta aventura se basa en el relato «Vinny Falco Detective» de Peter A. Ray, disponible gratis en https://gronk.it)
 """
 
 [stanze]
@@ -2138,6 +2146,8 @@ introduzione = """
 San Francisco, Oktober 1928. Die Prohibition ist das Gesetz, geschmuggelter Bourbon die Gewohnheit, und Herbert Hoover verspricht ein Huhn in jedem Topf. Du bist **Vinny Falco**, Privatdetektiv von *Falco & Partner*. Das „Partner“ ist reine Reklame: Der einzige Partner bist du, aber die goldenen Buchstaben an der Tür verleihen einen Hauch von Seriosität. Der abblätternde Putz im Treppenhaus erzählt eine ganz andere Geschichte.
 
 Es ist ein träger Nachmittag. King Olivers Kornett jammert aus deinem neuen Röhrenradio, dem Geschenk eines Glückstags beim Pferderennen, und du döst mit den Füßen auf dem Schreibtisch. Dann klingelt das Telefon.
+
+(Dieses Abenteuer beruht auf der Erzählung „Vinny Falco Detective“ von Peter A. Ray, kostenlos erhältlich unter https://gronk.it)
 """
 
 [stanze]

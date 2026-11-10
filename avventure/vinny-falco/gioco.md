@@ -52,6 +52,8 @@ San Francisco, October 1928. Prohibition is the law, bootleg bourbon is the cust
 
 It is a lazy afternoon. King Oliver's cornet moans from your new valve radio, the gift of a lucky day at the races, and you are dozing with your feet on the desk. Then the telephone rings.
 
+(This adventure is inspired by the story "Vinny Falco Detective" by Peter A. Ray, available for free at https://gronk.it)
+
 ## Setting
 San Francisco at the end of the Roaring Twenties: fog rolling in from the bay, cable cars, speakeasies, Chinatown's red lanterns, the rotten heart of the Tenderloin, the old Montgomery Block where artists and nobodies live behind brass name plates. South of the city the coast road climbs to **Devil's Slide**, where the Granger villa hangs over the ocean.
 
