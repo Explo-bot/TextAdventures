@@ -7,7 +7,7 @@ Questa cartella contiene una serie di **script in Markdown** da far eseguire a *
 - due avventure di esempio, scritte **in inglese** e giocabili **in tutte e cinque le lingue** (il narratore AI risponde nella lingua del giocatore, `traduzioni/it.toml`, `fr.toml`, `es.toml` e `de.toml` traducono titolo, introduzione e nomi): *The Punta Nera Lighthouse* / *Il Faro di Punta Nera* (racconto marinaresco) e *Star Trucker and the Space Chicken of Doom* (commedia sci-fi da B-movie). Scritte in inglese, i modelli AI, soprattutto quelli locali piccoli, ne seguono meglio le regole;
 - il manuale unico (`docs/MANUALE.md`): installazione e configurazione dell'AI, utilizzo, attivazione del bot Telegram, lingue, creazione di nuove avventure;
 - la presentazione del repository su GitHub: `README.md` (inglese) e `README.it.md` (italiano); in `config/` è pubblicato solo `config.esempio.toml` (con un profilo per ogni fornitore): la configurazione personale `config/config.toml` e le altre restano fuori da git;
-- gli installatori (`installa.ps1` / `installa.sh`), i lanciatori (`gioca.bat` / `gioca.ps1` / `gioca.sh` / `gioca-telegram.ps1` / `gioca-telegram.sh`) e un pacchetto pronto da distribuire (`dist/…zip`).
+- gli installatori (`installa.ps1` / `installa.sh`), i lanciatori (`gioca.bat` / `gioca.ps1` / `gioca.sh` / `gioca-telegram.ps1` / `gioca-telegram.sh`) e i pacchetti pronti da distribuire: `dist/…zip` per Windows e `dist/…debian13.tar.gz` per Debian 13 (x86-64).
 
 ## Come funziona il motore (in breve)
 
@@ -34,7 +34,7 @@ Ciclo di un turno: il giocatore scrive un'azione → il motore rilegge lo stato 
 | 1 | `02_CREA_APPLICAZIONE.md` | Crea il motore in `motore/`: modalità terminale, tutti i fornitori AI via rete, profili, test. | **Opus 5.5** |
 | 2 | `03_BOT_TELEGRAM.md` | Aggiunge la modalità bot Telegram. | **Opus 5.5** |
 | 3 | `04_MODELLO_LOCALE_GGUF.md` | Aggiunge il fornitore `locale` (GGUF dal disco con llama.cpp, opzionale con GPU CUDA). | **Opus 5.5** |
-| 4 | `05_COMPILA_E_TESTA.md` | Lint, test, build release (standard e con modello locale), prove, `dist/` e zip. | Sonnet 5.5 (Opus 5.5 se ci sono errori) |
+| 4 | `05_COMPILA_E_TESTA.md` | Lint, test, build release (standard e con modello locale), prove, `dist/`, zip per Windows e `.tar.gz` per Debian 13. | Sonnet 5.5 (Opus 5.5 se ci sono errori) |
 | 5 | `06_AVVENTURA_ESEMPIO.md` | Crea e collauda le avventure di esempio, scritte in inglese con le traduzioni in italiano, francese, spagnolo e tedesco: *The Punta Nera Lighthouse* / *Il Faro di Punta Nera* e *Star Trucker and the Space Chicken of Doom*. | Sonnet 5.5 |
 | 6 | `07_INSTALLATORI.md` | Crea `installa.ps1` e `installa.sh` e li prova. | Sonnet 5.5 |
 | 7 | `08_LANCIATORI_E_COLLAUDO.md` | Crea i lanciatori (terminale e Telegram) e collauda tutto: menu, salvataggi, fornitori, bot. | Sonnet 5.5 (Opus 5.5 se emergono bug) |
@@ -191,6 +191,7 @@ Fatte direttamente sul progetto e già riportate negli script 01–09 (rieseguen
 10. **Log per i timeout** (§11): `avventura.log` registra a livello `info` i tempi di ogni tentativo HTTP e del flusso (intestazioni, primo dato, pausa massima, totale), le interruzioni con i byte già ricevuti e, per Gemini, `finishReason`, token (anche di ragionamento) e `modelVersion`.
 11. **Avviso open source** (§7.1): a ogni avvio (terminale e bot, dopo la scelta della lingua) e a ogni `/start` durante una partita su Telegram, il programma dice nelle cinque lingue che è open source e che il codice è su GitHub (`https://github.com/Explo-bot/TextAdventures`).
 12. **Terza avventura: *Vinny Falco: The Devil's Slide Affair*** (`avventure/vinny-falco/`, script 06): noir hard-boiled nella San Francisco del 1928, ispirato ai personaggi e alla trama del racconto *Vinny Falco Detective* di Peter A. Ray (testi originali); l'introduzione, mostrata solo a chi inizia una partita a questa avventura, dice che il racconto è disponibile gratuitamente su https://gronk.it. 11 stanze, 100 turni, scritta in inglese con traduzioni it/fr/es/de; Madame Sybilla fa da sistema di suggerimenti; due finali vincenti (Julius salvato o finale amaro come nel romanzo).
+13. **Pacchetto per Debian 13 (x86-64)** (script 05, 07, 09): `dist/avventura-0.1.0-x86_64-debian13.tar.gz`, con l'eseguibile Linux standard (compilato su Ubuntu 24.04 in WSL, richiede al massimo glibc 2.38 contro la 2.41 di Debian 13, nessuna altra dipendenza oltre alla libc), le avventure, `config.esempio.toml`, `installa.sh`, `gioca.sh`, `gioca-telegram.sh`, `LEGGIMI.txt` e il manuale. Si installa con `./installa.sh` senza root; il manuale (I.2) ha la sezione «Debian 13» e i README il relativo avvio rapido.
 
 ## Stato del progetto (cinque lingue)
 
@@ -199,3 +200,11 @@ Fatte direttamente sul progetto e già riportate negli script 01–09 (rieseguen
 - **Test:** `cargo test` superato: 222 test, 0 falliti; `cargo fmt` e `cargo clippy --all-targets -- -D warnings` puliti.
 - **Prove manuali:** partite offline sul Faro (scritto in inglese) in francese, spagnolo e tedesco con comandi nella lingua scelta (`est`/`prends le bidon`/`/sorties`, `este`/`coge la lata`/`/salidas`, `osten`/`nimm den kanister`/`/ausgänge`), titolo, introduzione, nomi, `/uscite`, `/inventario` e `/help` tradotti; in precedenza partita in italiano e menu in italiano e in inglese; `valida` senza errori né avvisi per le due avventure; `dist\installa.ps1` provato sopra una vecchia installazione simulata (cartelle `-en` tolte, stanze italiane sostituite, avventure dell'utente conservate).
 - **Pacchetto:** `dist/avventura-0.1.0-x86_64-pc-windows-msvc.zip` rigenerato con le due avventure (traduzioni in quattro lingue) e il manuale aggiornato.
+
+## Stato del progetto (pacchetto Debian 13)
+
+- **Data:** 2026-11-13
+- **Versione:** avventura 0.1.0
+- **Test:** `cargo test --release` su Linux (Ubuntu 24.04 in WSL): 241 test, 0 falliti.
+- **Pacchetto Linux:** `dist/avventura-0.1.0-x86_64-debian13.tar.gz` (eseguibile standard di 8 MB, dipende solo da libc e libgcc_s, glibc richiesta ≤ 2.38). Provati dall'archivio, con `HOME` temporanea: `installa.sh` due volte (`partite/` e avventure dell'utente intatte), `avventura elenca`, partita offline con `gioca.sh --offline`, `installa.sh --disinstalla`. Non provato su un Debian 13 reale: la compatibilità si basa sulle versioni dei simboli glibc.
+- **Pacchetto Windows:** `dist/avventura-0.1.0-x86_64-pc-windows-msvc.zip` rigenerato con il manuale e il `LEGGIMI.txt` aggiornati.

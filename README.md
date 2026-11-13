@@ -86,7 +86,30 @@ With a local model no text ever leaves your computer and there is no cost per tu
    .\gioca.ps1 -Offline -Lingua en   # try it in English with no AI and no network (also fr, es, de, it)
    ```
 
-On Linux and macOS you build from source (`cargo build --release` in the `motore/` folder) and use `installa.sh` and `gioca.sh`.
+## Quick start (Debian 13, x86-64)
+
+1. Download `dist/avventura-0.1.0-x86_64-debian13.tar.gz`, unpack it and install (in your home folder, no root needed):
+
+   ```bash
+   tar -xzf avventura-0.1.0-x86_64-debian13.tar.gz
+   cd avventura-0.1.0-x86_64-debian13
+   ./installa.sh
+   ```
+
+2. Set the key for your chosen provider (Gemini in this example), and add it to `~/.bashrc` too:
+
+   ```bash
+   export GEMINI_API_KEY="your-key"
+   ```
+
+3. Play:
+
+   ```bash
+   avventura gioca --profilo gemini
+   ./gioca.sh --offline --lingua en   # try it with no AI and no network (also fr, es, de, it)
+   ```
+
+If `avventura` is not found, add `export PATH="$HOME/.local/bin:$PATH"` to `~/.bashrc`. On other Linux distributions and on macOS you build from source (`cargo build --release` in the `motore/` folder) and use `installa.sh --da-sorgente` and `gioca.sh`.
 
 ### Telegram bot
 
@@ -120,6 +143,6 @@ avventure/         the adventures (gioco.md + stanze/*.md + traduzioni/*.toml)
 config/            sample configuration files
 motore/            Rust source code of the engine
 docs/              manual and test report
-dist/              ready-to-use Windows package
+dist/              ready-to-use packages (Windows and Debian 13)
 0X_*.md            generation scripts for Claude Code
 ```

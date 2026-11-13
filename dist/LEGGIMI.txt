@@ -1,7 +1,9 @@
 AVVENTURA — motore per avventure testuali narrate da un modello AI
 ====================================================================
 
-1. Copia config.esempio.toml in config.toml (nella stessa cartella di avventura.exe).
+1. Copia config.esempio.toml in config.toml (nella stessa cartella di avventura.exe;
+   su Linux/Debian il programma si chiama avventura e ./installa.sh fa tutto da solo:
+   installa in ~/.local/share/avventura e crea il comando ~/.local/bin/avventura).
 2. Scegli il profilo AI: il file elenca i profili pronti (openai, claude, gemini,
    ollama, lmstudio, openrouter, gguf, prova). Vedili con:   avventura profili
    - Servizi in rete: imposta la chiave come variabile d'ambiente, ad esempio in
@@ -25,6 +27,8 @@ AVVENTURA — motore per avventure testuali narrate da un modello AI
 Scorciatoie: gioca.bat / gioca.ps1 / gioca.sh (opzioni: -Avventura, -Carica, -Nuova, -Profilo, -Offline, -Lingua it|en|fr|es|de);
 bot Telegram: gioca-telegram.ps1 / gioca-telegram.sh (-Verifica, -InstallaAvvioAutomatico solo su Windows);
 installatori: installa.ps1 / installa.sh.
+Debian 13 (x86-64): pacchetto avventura-<versione>-x86_64-debian13.tar.gz; scompatta,
+entra nella cartella ed esegui ./installa.sh (senza root), poi  ./gioca.sh --offline  per provare.
 Manuale completo: MANUALE.md
 Codice sorgente (open source): https://github.com/Explo-bot/TextAdventures
 Il racconto "Vinny Falco Detective" di Peter A. Ray, da cui è tratta l'avventura

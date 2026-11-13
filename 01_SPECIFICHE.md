@@ -45,7 +45,7 @@ TextAdventuresScript/
 │   └── config.toml              (personale, escluso da git) chiavi a parte, ID Telegram, codice d'invito
 ├── docs/
 │   └── MANUALE.md               manuale unico: installazione, uso, creazione avventure
-├── dist/                        eseguibile compilato + file da distribuire
+├── dist/                        eseguibili compilati + pacchetti da distribuire (Windows .zip, Debian 13 .tar.gz)
 ├── installa.ps1 / installa.sh   installatori
 ├── gioca.ps1 / gioca.bat / gioca.sh   lanciatori (terminale)
 ├── gioca-telegram.ps1 / gioca-telegram.sh   avvio del bot Telegram
@@ -900,7 +900,7 @@ Il finto aggiorna `memoria` concatenando l'ultima azione (troncata).
 
 ## 11. Requisiti non funzionali
 
-- Funziona su Windows 10/11 (target principale, MSVC), Linux e macOS.
+- Funziona su Windows 10/11 (target principale, MSVC), Linux e macOS. Per Debian 13 «trixie» x86-64 si distribuisce anche un pacchetto precompilato (`dist/avventura-<versione>-x86_64-debian13.tar.gz`, vedi script 05), compilato su una distribuzione con libc non più recente di quella di Debian 13 (glibc 2.41) e senza altre dipendenze di sistema oltre alla libc.
 - Avvio < 1 s; nessun blocco dell'interfaccia senza indicatore di attesa.
 - Percorsi gestiti con `PathBuf` (spazi e caratteri accentati nei percorsi Windows).
 - Un turno fallito non corrompe mai lo stato.

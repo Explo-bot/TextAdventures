@@ -84,7 +84,30 @@ Con un modello locale nessun testo esce dal computer e non c'è alcun costo per 
    .\gioca.ps1 -Offline        # prova senza AI e senza rete (-Lingua en, fr, es, de per le altre lingue)
    ```
 
-Su Linux e macOS si compila dai sorgenti (`cargo build --release` nella cartella `motore/`) e si usano `installa.sh` e `gioca.sh`.
+## Avvio rapido (Debian 13, x86-64)
+
+1. Scarica `dist/avventura-0.1.0-x86_64-debian13.tar.gz`, scompattalo e installa (nella tua cartella personale, senza root):
+
+   ```bash
+   tar -xzf avventura-0.1.0-x86_64-debian13.tar.gz
+   cd avventura-0.1.0-x86_64-debian13
+   ./installa.sh
+   ```
+
+2. Imposta la chiave del fornitore scelto (esempio Gemini), aggiungendola anche a `~/.bashrc`:
+
+   ```bash
+   export GEMINI_API_KEY="la-tua-chiave"
+   ```
+
+3. Gioca:
+
+   ```bash
+   avventura gioca --profilo gemini
+   ./gioca.sh --offline        # prova senza AI e senza rete (--lingua en, fr, es, de per le altre lingue)
+   ```
+
+Se `avventura` non viene trovato, aggiungi `export PATH="$HOME/.local/bin:$PATH"` a `~/.bashrc`. Per le altre distribuzioni Linux e per macOS si compila dai sorgenti (`cargo build --release` nella cartella `motore/`) e si usano `installa.sh --da-sorgente` e `gioca.sh`.
 
 ### Bot Telegram
 
@@ -118,6 +141,6 @@ avventure/         le avventure (gioco.md + stanze/*.md + traduzioni/*.toml)
 config/            file di configurazione d'esempio
 motore/            sorgenti Rust del motore
 docs/              manuale e collaudo
-dist/              pacchetto pronto per Windows
+dist/              pacchetti pronti (Windows e Debian 13)
 0X_*.md            script di generazione per Claude Code
 ```

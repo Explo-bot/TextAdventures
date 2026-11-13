@@ -131,17 +131,17 @@ I comandi che iniziano con `/` (`/save`, `/inventory`, `/undo`…) sono gestiti 
 
 ### I.1 Requisiti
 
-| | Windows | Linux / macOS |
-|---|---|---|
-| Sistema | Windows 10 o 11 (64 bit) | distribuzione Linux recente, macOS |
-| Shell | PowerShell (già presente) | bash |
-| Pacchetto pronto | sì (`avventura-0.1.0-x86_64-pc-windows-msvc.zip`) | no: si compila dai sorgenti |
-| Spazio su disco | circa 10 MB (più i modelli locali, da 2 a decine di GB) | idem |
-| AI in cloud | connessione a internet e una chiave API | idem |
-| AI locale con server | Ollama o LM Studio e un modello scaricato | idem |
-| AI locale da file GGUF | eseguibile `avventura-cuda.exe` (GPU NVIDIA) o `avventura-locale.exe` (solo CPU) e un file `.gguf` | da compilare con `--features locale` |
-| Bot Telegram | un account Telegram e il PC acceso | idem |
-| Per provare subito | niente: profilo `prova` (AI simulata offline) | idem |
+| | Windows | Debian 13 | altre Linux / macOS |
+|---|---|---|---|
+| Sistema | Windows 10 o 11 (64 bit) | Debian 13 «trixie» x86-64 (anche Ubuntu 24.04 o più recente) | distribuzione Linux recente, macOS |
+| Shell | PowerShell (già presente) | bash | bash |
+| Pacchetto pronto | sì (`avventura-0.1.0-x86_64-pc-windows-msvc.zip`) | sì (`avventura-0.1.0-x86_64-debian13.tar.gz`) | no: si compila dai sorgenti |
+| Spazio su disco | circa 10 MB (più i modelli locali, da 2 a decine di GB) | idem | idem |
+| AI in cloud | connessione a internet e una chiave API | idem | idem |
+| AI locale con server | Ollama o LM Studio e un modello scaricato | idem | idem |
+| AI locale da file GGUF | eseguibile `avventura-cuda.exe` (GPU NVIDIA) o `avventura-locale.exe` (solo CPU) e un file `.gguf` | da compilare con `--features locale` | da compilare con `--features locale` |
+| Bot Telegram | un account Telegram e il PC acceso | idem (anche come servizio `systemd`, vedi [III.7](#iii7-tenerlo-sempre-attivo)) | idem |
+| Per provare subito | niente: profilo `prova` (AI simulata offline) | idem | idem |
 
 ### I.2 Installazione da pacchetto pronto
 
@@ -207,7 +207,50 @@ Copy-Item config.esempio.toml config.toml     # una volta
 
 Il motore cerca `avventure\` nella cartella corrente e accanto all'eseguibile, e `config.toml` (ordine: `--config FILE`, `.\config.toml`, `.\config\config.toml`, cartella dell'eseguibile). Le partite finiscono in `partite\` accanto a `avventure\`.
 
-**Linux / macOS.** Non c'è un pacchetto precompilato: compila dai sorgenti (§I.3) e installa con:
+**Debian 13 (x86-64)**
+
+Il pacchetto `avventura-0.1.0-x86_64-debian13.tar.gz` contiene l'eseguibile già compilato per Debian 13 «trixie» (64 bit, collegato dinamicamente alla libc di sistema: non servono altre librerie né Rust). Funziona anche su Ubuntu 24.04 o più recente.
+
+1. Scarica o copia l'archivio sul computer Debian e scompattalo:
+
+   ```bash
+   tar -xzf avventura-0.1.0-x86_64-debian13.tar.gz
+   cd avventura-0.1.0-x86_64-debian13
+   ```
+
+   Dentro trovi: `avventura` (l'eseguibile), `avventure/` (le tre avventure di esempio), `config.esempio.toml`, `modelli/LEGGIMI.txt`, `installa.sh`, `gioca.sh`, `gioca-telegram.sh`, `LEGGIMI.txt` e questo manuale (`MANUALE.md`).
+
+2. Installa (non servono privilegi di root: tutto va nella tua cartella personale):
+
+   ```bash
+   ./installa.sh
+   ```
+
+   Copia l'eseguibile in `~/.local/share/avventura/`, crea il link `~/.local/bin/avventura`, crea `config.toml` da `config.esempio.toml` solo se non esiste, copia le avventure in `~/.local/share/avventura/avventure/` e non tocca mai `partite/`, `modelli/` né le avventure che hai aggiunto tu. Per scegliere un'altra cartella: `./installa.sh --destinazione ~/giochi/avventura`.
+
+3. Se `~/.local/bin` non è nel PATH (su Debian lo aggiunge `~/.profile` al login successivo, se la cartella esiste già), aggiungi a `~/.bashrc` e riapri il terminale:
+
+   ```bash
+   echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+   ```
+
+4. Prova subito, senza AI e senza rete, poi scegli il fornitore che vuoi usare:
+
+   ```bash
+   avventura prova-ai --profilo prova     # controllo di base
+   ./gioca.sh --offline --lingua it       # partita con l'AI simulata (anche --lingua en, fr, es, de)
+   nano ~/.local/share/avventura/config.toml    # scegli il profilo (openai, claude, gemini, ollama, lmstudio…)
+   export GEMINI_API_KEY="la-tua-chiave"        # aggiungila a ~/.bashrc per renderla permanente
+   avventura gioca --profilo gemini
+   ```
+
+5. Bot Telegram e avvio automatico: vedi [Parte III](#parte-iii-giocare-tramite-telegram), in particolare il servizio `systemd --user` ([III.7](#iii7-tenerlo-sempre-attivo)).
+
+Per aggiornare, scompatta il nuovo archivio e rilancia `./installa.sh` (le avventure del pacchetto vengono sostituite, `config.toml`, `partite/` e le tue avventure no); per disinstallare, `./installa.sh --disinstalla` (chiede conferma prima di cancellare salvataggi, avventure e `config.toml`). Se compili tu stesso su Debian: `sudo apt install build-essential curl`, Rust da <https://rustup.rs> e `./installa.sh --da-sorgente` (§I.3).
+
+L'eseguibile standard non include i modelli GGUF: per quelli serve la compilazione con `--features locale` (§I.7; su Debian servono `cmake`, `clang` e `libclang-dev`) oppure Ollama / LM Studio.
+
+**Altre distribuzioni Linux / macOS.** Non c'è un pacchetto precompilato: compila dai sorgenti (§I.3) e installa con:
 
 ```bash
 ./installa.sh --da-sorgente              # destinazione: ~/.local/share/avventura, link in ~/.local/bin/avventura
@@ -252,7 +295,7 @@ Se `~/.local/bin` non è nel PATH aggiungi a `~/.bashrc` (o `~/.zshrc`): `export
 
 5. Installa: `.\installa.ps1 -DaSorgente` (compila e copia in un solo passaggio).
 
-**Linux / macOS**
+**Linux / macOS** (su Debian 13: `sudo apt install build-essential curl`)
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh     # Rust

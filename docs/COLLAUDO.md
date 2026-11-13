@@ -68,3 +68,10 @@ reale di `partite/` non è stato toccato). Server di prova locali su `127.0.0.1`
 - Qualità: `cargo fmt`, `cargo clippy --all-targets -- -D warnings` e `cargo test` (199 test) puliti;
   `dist/` riallineato (eseguibile ricompilato, lanciatori inclusi `gioca-telegram.*`) e
   `avventura-0.1.0-x86_64-pc-windows-msvc.zip` rigenerato (31 voci).
+
+## Pacchetto Debian 13 (2026-11-13)
+
+- Compilazione `cargo build --release` su Ubuntu 24.04 (WSL, glibc 2.39) in 4 min 31 s; sorgenti copiati fuori da `/mnt/d` senza `motore/target`. Eseguibile 8,4 MB; `ldd`: solo `libc.so.6` e `libgcc_s.so.1`; simboli glibc fino a `GLIBC_2.38` (Debian 13 ha la 2.41).
+- `cargo test --release`: 241 test superati. Attenzione: `config::test::file_di_esempio_valido` legge `../config/config.esempio.toml`, quindi la copia dei sorgenti per la build deve includere anche `config/` (senza, il test fallisce).
+- Installazione dal `.tar.gz` con `HOME` temporanea: `installa.sh` (due volte), file in `partite/` e avventura aggiunta dall'utente conservati, `avventura --version`, `avventura elenca`, partita offline in italiano e menu in inglese con `gioca.sh --offline`, `installa.sh --disinstalla`: tutto corretto.
+- Non provato su un'installazione reale di Debian 13.

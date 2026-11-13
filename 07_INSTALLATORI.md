@@ -45,9 +45,11 @@ L'eseguibile trova `avventure/` e `config.toml` accanto a sé (§5, §7): verifi
 ### `installa.sh`
 Equivalente in bash: destinazione default `~/.local/share/avventura`, link simbolico in `~/.local/bin/avventura`, stesse regole su `config.toml`, `partite/` e avventure dell'utente; opzioni `--da-sorgente`, `--destinazione DIR`, `--disinstalla`.
 
+**Pacchetto Debian 13.** `installa.sh` deve funzionare, senza `--da-sorgente` e senza root, dentro lo scompattato di `dist/avventura-<versione>-x86_64-debian13.tar.gz` (script 05), dove l'eseguibile `avventura`, `avventure/` e `config.esempio.toml` stanno accanto allo script (la ricerca dei percorsi cerca sia in `dist/` sia nella cartella dello script). Dopo l'installazione `~/.local/bin/avventura` è un link a `<Destinazione>/avventura`; se `~/.local/bin` non è nel PATH lo script suggerisce la riga da aggiungere a `~/.bashrc` (su Debian lo mette già `~/.profile` al login successivo, se la cartella esiste).
+
 ### Controlli
 - Su Windows: esegui `installa.ps1 -Destinazione <cartella temporanea> -NoPath` **due volte** (idempotenza), aggiungi a mano una seconda avventura finta nella destinazione e un file in `partite/`, rilancia e verifica che non vengano toccati. Lancia l'eseguibile installato con `elenca` e verifica che veda le avventure. Poi chiedi conferma prima di cancellare la cartella temporanea.
-- Altrove: stessi controlli con `installa.sh`; per `installa.ps1` almeno la verifica di sintassi con `pwsh` se disponibile.
+- Altrove (Linux): stessi controlli con `installa.sh`, anche dal pacchetto `.tar.gz` per Debian 13 con `HOME` temporanea; per `installa.ps1` almeno la verifica di sintassi con `pwsh` se disponibile.
 - Copia `installa.ps1` e `installa.sh` in `dist/` e rigenera lo zip.
 
 ### Report finale

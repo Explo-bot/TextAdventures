@@ -30,8 +30,8 @@ Per le schermate (menu delle avventure, menu della partita, menu di `/save`, lis
 **Introduzione** — cos'è il motore; i quattro elementi (avventure in sottocartelle, file di gioco, file di stanza, stato e salvataggi, AI); schema ASCII del turno: input → motore → prompt → AI → validazione → stato → output.
 
 **Parte I – Installazione**
-1. Requisiti (Windows 10/11; Linux/macOS).
-2. Installazione da pacchetto pronto: scompattare lo zip, eseguire `installa.ps1` (con i parametri reali, incluso il caso dei criteri di esecuzione: `powershell -ExecutionPolicy Bypass -File .\installa.ps1`) oppure usare il programma direttamente dalla cartella scompattata; equivalente con `installa.sh`.
+1. Requisiti (tabella con colonne Windows 10/11, **Debian 13 x86-64**, altre Linux/macOS).
+2. Installazione da pacchetto pronto: scompattare lo zip, eseguire `installa.ps1` (con i parametri reali, incluso il caso dei criteri di esecuzione: `powershell -ExecutionPolicy Bypass -File .\installa.ps1`) oppure usare il programma direttamente dalla cartella scompattata; equivalente con `installa.sh`. Sottosezione dedicata a **Debian 13 (x86-64)**: pacchetto `dist/avventura-<versione>-x86_64-debian13.tar.gz` (eseguibile già compilato, nessuna dipendenza oltre alla libc, funziona anche su Ubuntu 24.04+), `tar -xzf`, `./installa.sh` senza root, PATH di `~/.local/bin`, prova offline con `./gioca.sh --offline`, scelta del profilo e della chiave in `~/.bashrc`, collegamento alla Parte III (servizio `systemd --user`), aggiornamento e disinstallazione, pacchetti `apt` per compilare da sorgente (`build-essential curl`; per `--features locale` anche `cmake clang libclang-dev`).
 3. Installazione da sorgente: Rust (`winget install Rustlang.Rustup` o https://rustup.rs), Microsoft C++ Build Tools (`winget install Microsoft.VisualStudio.2022.BuildTools` + carico di lavoro "Sviluppo di applicazioni desktop con C++"), riaprire il terminale, `cargo build --release`, `installa.ps1 -DaSorgente`. Linux/macOS: rustup + strumenti di compilazione di sistema; nessuna dipendenza OpenSSL.
 4. **Configurare l'AI: i concetti** — cos'è un *fornitore* (tabella dei sette fornitori del §5 con "cosa serve" e "costo"), cos'è un *profilo*, come si sceglie (`--profilo`, `AVVENTURA_PROFILO`, profilo predefinito `[ai]`), `avventura profili` per vedere quelli configurati. Tabella completa delle chiavi di `config.toml` (nome, tipo, default, descrizione) ricavata dal codice, incluse `[ai.locale]` e `[telegram]`; tutte le variabili d'ambiente. Come impostare una variabile d'ambiente utente in modo permanente (`[Environment]::SetEnvironmentVariable("NOME", "valore", "User")` e riaprire il terminale; bash: `export` in `~/.bashrc`) e perché è meglio che scrivere la chiave nel file.
 5. **AI in cloud** — una sottosezione per ciascuno, con: dove creare l'account e la chiave (link alla console ufficiale), nome della variabile d'ambiente, profilo d'esempio, nota sui costi:
@@ -125,7 +125,7 @@ Sezione completa e pratica, passo per passo, pensata anche per chi non ha mai cr
 - Lunghezza indicativa 1300–2200 righe.
 
 ### Chiusura
-- Copia `docs/MANUALE.md` in `dist/` e rigenera lo zip.
+- Copia `docs/MANUALE.md` in `dist/` e rigenera lo zip e il pacchetto `.tar.gz` per Debian 13 (script 05).
 - Aggiungi in fondo a `LEGGIMI.md` (senza modificare il resto) una sezione "Stato del progetto" con data, versione, esito dei test e del collaudo, percorso dello zip.
 
 ### Controlli
